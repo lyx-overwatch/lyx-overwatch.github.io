@@ -55,9 +55,17 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/categories/leetcode/">leetcode</a></li>
+				<li><a href="/categories/leetcode/">LEETCODE</a></li>
 	        
 				<li><a href="/categories/vue/">VUE</a></li>
+	        
+				<li><a href="/categories/react/">REACT</a></li>
+	        
+				<li><a href="/categories/js/">JAVASCRIPT</a></li>
+	        
+				<li><a href="/categories/数据结构/">数据结构</a></li>
+	        
+				<li><a href="/categories/others/">OTHERS</a></li>
 	        
 			</ul>
 		</nav>
@@ -111,6 +119,14 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -127,11 +143,19 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/leetcode/">leetcode</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/leetcode/">LEETCODE</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/vue/">VUE</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/vue/">VUE</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/categories/react/">REACT</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/categories/js/">JAVASCRIPT</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/categories/数据结构/">数据结构</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/categories/others/">OTHERS</a></li>
 		        
 				</ul>
 			</nav>
@@ -148,34 +172,31 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-react/start/start1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js/基础/继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/react/start/start1/">react基础</a>
+      <a class="article-title" href="/2020/09/22/js/基础/继承/">JS 继承</a>
     </h1>
   
 
         
-        <a href="/2020/09/22/react/start/start1/" class="archive-article-date">
-  	<time datetime="2020-09-22T03:56:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
+        <a href="/2020/09/22/js/基础/继承/" class="archive-article-date">
+  	<time datetime="2020-09-22T08:11:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="初识react"><a href="#初识react" class="headerlink" title="初识react"></a>初识react</h4><p>使用create-react-app创建一个简单的应用:
-</p>
+        <h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    F.prototype=o</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F()</span><br><span class="line">&#125;<span class="comment">//Object.creat()与object方法作用相同</span></span><br></pre></td></tr></table></figure>
 
-<img src="/2020/09/22/react/start/start1/1.png">
-<p>这是一个简单的井子棋游戏，每个棋格都是一个按钮，将一个棋格作为一个最简单的组件进行封装。
-</p>
+<h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.property=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">this</span>.color = [<span class="string">'red'</span>]</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.property;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.subproperty=<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype=<span class="keyword">new</span> SuperType();</span><br><span class="line"></span><br><span class="line">SubType.prototype.getSubValue=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2020/09/22/react/start/start1/#more">more >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/继承/#more">more >></a>
         
       
 
@@ -190,7 +211,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
+        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -199,7 +220,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/22/react/start/start1/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/继承/">展开全文 >></a>
         </p>
       
 
@@ -229,26 +250,31 @@
 
 
   
-    <article id="post-leetcode/递归/二叉树最小深度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js/基础/创建对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/15/leetcode/递归/二叉树最小深度/">二叉树最小深度</a>
+      <a class="article-title" href="/2020/09/22/js/基础/创建对象/">JS创建对象方法</a>
     </h1>
   
 
         
-        <a href="/2020/09/15/leetcode/递归/二叉树最小深度/" class="archive-article-date">
-  	<time datetime="2020-09-15T12:45:01.235Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
+        <a href="/2020/09/22/js/基础/创建对象/" class="archive-article-date">
+  	<time datetime="2020-09-22T08:03:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
+        <h3 id="工厂模式创建"><a href="#工厂模式创建" class="headerlink" title="工厂模式创建"></a>工厂模式创建</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">creatPerson</span>(<span class="params">name,age,job</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> o=<span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">        o.name=name;</span><br><span class="line">        o.age=age;</span><br><span class="line">        o.job=job;</span><br><span class="line">        o.sayName=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> o;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> person1=creatPerson(<span class="string">'pitter'</span>,<span class="number">29</span>,<span class="string">'software engineer'</span>);</span><br><span class="line">    person1.sayName();</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,job</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">        <span class="keyword">this</span>.age=age;</span><br><span class="line">        <span class="keyword">this</span>.job=job;</span><br><span class="line">        <span class="keyword">this</span>.sayName=sayName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> person1=<span class="keyword">new</span> Person(<span class="string">'petter'</span>,<span class="number">29</span>,<span class="string">'software engineer'</span>);</span><br><span class="line">    person1.sayName();</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/09/22/js/基础/创建对象/#more">more >></a>
         
       
 
@@ -263,7 +289,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -272,7 +298,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/15/leetcode/递归/二叉树最小深度/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/创建对象/">展开全文 >></a>
         </p>
       
 
@@ -302,26 +328,31 @@
 
 
   
-    <article id="post-leetcode/递归/平衡二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js/基础/eventLoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/15/leetcode/递归/平衡二叉树/">平衡二叉树</a>
+      <a class="article-title" href="/2020/09/22/js/基础/eventLoop/">JS eventLoop</a>
     </h1>
   
 
         
-        <a href="/2020/09/15/leetcode/递归/平衡二叉树/" class="archive-article-date">
-  	<time datetime="2020-09-15T12:37:00.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
+        <a href="/2020/09/22/js/基础/eventLoop/" class="archive-article-date">
+  	<time datetime="2020-09-22T07:56:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>) <span class="comment">//3,2,1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 游刃有余版</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> a=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">    reject(<span class="string">'x'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'resolved'</span>) <span class="comment">//resolve 或 ，reject之后仍会执行</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;,()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error1'</span>)</span><br><span class="line">    reject(<span class="string">'x'</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;,()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error2'</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">6</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">7</span>) <span class="comment">// 2,resolved,7,error1,error2,5,6,1</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/09/22/js/基础/eventLoop/#more">more >></a>
         
       
 
@@ -336,7 +367,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -345,7 +376,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/15/leetcode/递归/平衡二叉树/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/eventLoop/">展开全文 >></a>
         </p>
       
 
@@ -375,32 +406,32 @@
 
 
   
-    <article id="post-data-structure/creatTree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js/基础/原生js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/data-structure/creatTree/">创建二叉树</a>
+      <a class="article-title" href="/2020/09/22/js/基础/原生js/">JS基础知识总结</a>
     </h1>
   
 
         
-        <a href="/2019/09/22/data-structure/creatTree/" class="archive-article-date">
-  	<time datetime="2019-09-22T15:02:52.329Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+        <a href="/2020/09/22/js/基础/原生js/" class="archive-article-date">
+  	<time datetime="2020-09-22T07:47:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="根据一个数组（二叉树的中序遍历），创建一颗二叉树"><a href="#根据一个数组（二叉树的中序遍历），创建一颗二叉树" class="headerlink" title="根据一个数组（二叉树的中序遍历），创建一颗二叉树"></a>根据一个数组（二叉树的中序遍历），创建一颗二叉树</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">treeNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.left=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.right=<span class="literal">null</span>;</span><br><span class="line">    &#125; <span class="comment">// 定义树节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> index=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">creatTree</span>(<span class="params">root,arr</span>) </span>&#123;</span><br><span class="line">    root.val=arr[index++];</span><br><span class="line">    <span class="keyword">if</span>(root.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    root.left=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.left,arr); <span class="comment">// 递归创建左子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.left.val==<span class="literal">null</span>)&#123;  </span><br><span class="line">        root.left=<span class="literal">null</span>;  <span class="comment">// 当前结点为空值，则没有左子结点</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    root.right=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.right,arr); <span class="comment">// 递归创建右子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.right.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        root.right=<span class="literal">null</span>; <span class="comment">// 当前结点为空值，则没有右子结点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> root=<span class="keyword">new</span> treeNode();</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'D'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'E'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'C'</span>, <span class="string">'F'</span>,<span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'G'</span>, <span class="literal">null</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="built_in">console</span>.log(creatTree(root,arr));</span><br></pre></td></tr></table></figure>
+        <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">per</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">'lyx'</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">closure</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> closure</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> f1 = per() <span class="comment">// 本来函数per执行完，所有变量都销毁，但是产生了闭包，闭包仍然持有对该作用域的引用</span></span><br><span class="line">    alert(f1()) <span class="comment">// f1执行在closure的词法作用域之外</span></span><br></pre></td></tr></table></figure>
 
-<p>最后输出这样一个树结构：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">treeNode &#123;<span class="attr">val</span>: <span class="string">"A"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br><span class="line">-left: treeNode &#123;<span class="attr">val</span>: <span class="string">"B"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br><span class="line">-right: treeNode &#123;<span class="attr">val</span>: <span class="string">"C"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br></pre></td></tr></table></figure>
-
-
+<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3>
+        
+          <a class="article-more-a" href="/2020/09/22/js/基础/原生js/#more">more >></a>
+        
       
 
       
@@ -414,7 +445,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -423,7 +454,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/22/data-structure/creatTree/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/原生js/">展开全文 >></a>
         </p>
       
 
@@ -455,7 +486,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
