@@ -5,21 +5,23 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>合并k个有序链表 | Blog Of LiuYunxiang</title>
+  <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
+  <title>react基础 | Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1234567891011121314151617181920212223242526272829303132let mergeKLists = function(lists) &amp;#123;        let arr = [] // 声明一个优先队列        let newNode = new ListNode(-1)        let res = newNode        fo">
-<meta name="keywords" content="数据结构,leetcode">
+  <meta name="description" content="初识react使用create-react-app创建一个简单的应用:    这是一个简单的井子棋游戏，每个棋格都是一个按钮，将一个棋格作为一个最简单的组件进行封装。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="合并k个有序链表">
-<meta property="og:url" content="http://yoursite.com/2019/09/20/mergeKLists/index.html">
+<meta property="og:title" content="react基础">
+<meta property="og:url" content="http://lyx-overwatch.github.io/2020/09/22/react/start/start1/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132let mergeKLists = function(lists) &amp;#123;        let arr = [] // 声明一个优先队列        let newNode = new ListNode(-1)        let res = newNode        fo">
+<meta property="og:description" content="初识react使用create-react-app创建一个简单的应用:    这是一个简单的井子棋游戏，每个棋格都是一个按钮，将一个棋格作为一个最简单的组件进行封装。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-20T16:02:49.061Z">
+<meta property="og:image" content="http://lyx-overwatch.github.io/2020/09/22/react/start/start1/1.png">
+<meta property="og:image" content="http://lyx-overwatch.github.io/2020/09/22/react/start/start1/2.png">
+<meta property="og:updated_time" content="2020-09-22T03:56:53.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="合并k个有序链表">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132let mergeKLists = function(lists) &amp;#123;        let arr = [] // 声明一个优先队列        let newNode = new ListNode(-1)        let res = newNode        fo">
+<meta name="twitter:title" content="react基础">
+<meta name="twitter:description" content="初识react使用create-react-app创建一个简单的应用:    这是一个简单的井子棋游戏，每个棋格都是一个按钮，将一个棋格作为一个最简单的组件进行封装。">
+<meta name="twitter:image" content="http://lyx-overwatch.github.io/2020/09/22/react/start/start1/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog Of LiuYunxiang" type="application/atom+xml">
   
@@ -60,7 +62,9 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/categories/leetcode/">leetcode</a></li>
+	        
+				<li><a href="/categories/vue/">VUE</a></li>
 	        
 			</ul>
 		</nav>
@@ -112,6 +116,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -125,12 +131,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/categories/leetcode/">leetcode</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/categories/vue/">VUE</a></li>
 		        
 				</ul>
 			</nav>
@@ -145,29 +153,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mergeKLists" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-react/start/start1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      合并k个有序链表
+      react基础
     </h1>
   
 
         
-        <a href="/2019/09/20/mergeKLists/" class="archive-article-date">
-  	<time datetime="2019-09-20T15:13:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
+        <a href="/2020/09/22/react/start/start1/" class="archive-article-date">
+  	<time datetime="2020-09-22T03:56:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mergeKLists = <span class="function"><span class="keyword">function</span>(<span class="params">lists</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> arr = [] <span class="comment">// 声明一个优先队列</span></span><br><span class="line">        <span class="keyword">let</span> newNode = <span class="keyword">new</span> ListNode(<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">let</span> res = newNode</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> list <span class="keyword">of</span> lists) &#123;</span><br><span class="line">            <span class="keyword">if</span> (list) &#123;</span><br><span class="line">                arr.push(list)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// 保存所有链表的头结点</span></span><br><span class="line"></span><br><span class="line">        arr.sort(mySort(<span class="string">'val'</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (arr.length) &#123; <span class="comment">// 优先队列不为空时</span></span><br><span class="line">            <span class="keyword">let</span> node = arr.shift() <span class="comment">// 最小的那个结点出栈</span></span><br><span class="line">            newNode.next = node</span><br><span class="line">            newNode = newNode.next</span><br><span class="line">            <span class="keyword">if</span> (node.next) &#123; <span class="comment">// 当前结点有后续的next结点</span></span><br><span class="line">                arr.push(node.next)</span><br><span class="line">                arr.sort(mySort(<span class="string">'val'</span>)) <span class="comment">// 重新排序</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">mySort</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n1, n2</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> a = n1[val]</span><br><span class="line">                <span class="keyword">let</span> b = n2[val]</span><br><span class="line">                <span class="keyword">return</span> a - b</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// 根据结点的值进行排序</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.next</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="初识react"><a href="#初识react" class="headerlink" title="初识react"></a>初识react</h4><p>使用create-react-app创建一个简单的应用:
+</p>
 
+<img src="/2020/09/22/react/start/start1/1.png">
+<p>这是一个简单的井子棋游戏，每个棋格都是一个按钮，将一个棋格作为一个最简单的组件进行封装。
+</p>
 
+<a id="more"></a>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'../css/square.css'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// class Square extends React.Component &#123;</span></span><br><span class="line"><span class="comment">//   render () &#123;</span></span><br><span class="line"><span class="comment">//     return (</span></span><br><span class="line"><span class="comment">//       &lt;button className="square"</span></span><br><span class="line"><span class="comment">//        onClick=&#123;() =&gt; &#123;this.props.onClick()&#125;&#125;&gt;</span></span><br><span class="line"><span class="comment">//         &#123;this.props.value&#125;</span></span><br><span class="line"><span class="comment">//       &lt;/button&gt;</span></span><br><span class="line"><span class="comment">//     );</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">  函数组件写法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Square</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;button className=<span class="string">"square"</span></span><br><span class="line">       onClick=&#123;() =&gt; &#123;props.onClick()&#125;&#125;&gt;</span><br><span class="line">        &#123;props.value&#125;</span><br><span class="line">      &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default  Square</span></span><br></pre></td></tr></table></figure>
+
+<p>如果组件不包含state，并且只要一个render方法时，使用函数式组件比较简单。这个函数接收 props 作为参数，然后返回需要渲染的元素。
+棋盘由9个棋格组成，state中包含了一个棋盘数组，保存所有的棋格的内容。这样每个的棋格数据改变的时候，不用为每个棋格添加state保存数据，只需在所有棋格的父组件——棋盘中的state来维护和传递数据（这里可称为状态提升——多个组件需要反映相同的变化数据，这时我们建议将共享状态提升到最近的共同父组件中去）。
+这里注意class组件的写法，在constructor内使用super（props）调用父类的构造函数。</p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> Square <span class="keyword">from</span> <span class="string">'./square'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'../css/border.css'</span></span><br><span class="line"><span class="keyword">import</span> calculateWinner <span class="keyword">from</span> <span class="string">'./calculateWinner'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Border</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props)</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      squares: <span class="built_in">Array</span>(<span class="number">9</span>).fill(<span class="literal">null</span>),</span><br><span class="line">      xIsNext: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  renderSquare (i) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Square value=&#123;<span class="keyword">this</span>.state.squares[i]&#125;</span><br><span class="line">      onClick=&#123;() =&gt; &#123;<span class="keyword">this</span>.handleClick(i)&#125;&#125; /&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleClick(i) &#123;</span><br><span class="line">    <span class="keyword">const</span> squares = <span class="keyword">this</span>.state.squares.slice()</span><br><span class="line">    <span class="keyword">if</span> (calculateWinner(squares) || squares[i]) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    squares[i] = <span class="keyword">this</span>.state.xIsNext ? <span class="string">'X'</span> : <span class="string">'O'</span></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;squares,<span class="attr">xIsNext</span>:!<span class="keyword">this</span>.state.xIsNext&#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">let</span> winner = calculateWinner(<span class="keyword">this</span>.state.squares)</span><br><span class="line">    <span class="keyword">let</span> status</span><br><span class="line">    <span class="keyword">if</span> (winner) &#123;</span><br><span class="line">      status = <span class="string">'Winner Is : '</span> + winner</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      status = <span class="string">'Next Player : '</span> + (<span class="keyword">this</span>.state.xIsNext ? <span class="string">'X'</span> : <span class="string">'O'</span>) </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;div&gt;&#123;status&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div className="board-row"&gt;</span></span><br><span class="line"><span class="regexp">          &#123;this.renderSquare(0)&#125;</span></span><br><span class="line"><span class="regexp">          &#123;this.renderSquare(1)&#125;</span></span><br><span class="line"><span class="regexp">          &#123;this.renderSquare(2)&#125;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">        &lt;div className=<span class="string">"board-row"</span>&gt;</span><br><span class="line">          &#123;<span class="keyword">this</span>.renderSquare(<span class="number">3</span>)&#125;</span><br><span class="line">          &#123;<span class="keyword">this</span>.renderSquare(<span class="number">4</span>)&#125;</span><br><span class="line">          &#123;<span class="keyword">this</span>.renderSquare(<span class="number">5</span>)&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div className="board-row"&gt;</span></span><br><span class="line"><span class="regexp">          &#123;this.renderSquare(6)&#125;</span></span><br><span class="line"><span class="regexp">          &#123;this.renderSquare(7)&#125;</span></span><br><span class="line"><span class="regexp">          &#123;this.renderSquare(8)&#125;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Border</span></span><br></pre></td></tr></table></figure>
+
+<p>改变state的数据，使用this.setState方法；this.state.xxx只能从state中读取数据。</p>
+<p>JSX是一个 JavaScript 的语法扩展。 React 中配合使用 JSX，JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式</p>
+
+<img src="/2020/09/22/react/start/start1/2.png">
       
 
       
@@ -196,22 +221,18 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
 
       
 
@@ -261,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/20/mergeKLists/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://lyx-overwatch.github.io/2020/09/22/react/start/start1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,18 +296,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/21/creatTree/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          创建二叉树
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/19/myrouter/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hash路由的简单实现</div>
+    <a href="/2020/09/15/leetcode/递归/二叉树最小深度/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">二叉树最小深度</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -329,7 +341,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Liu Yunxiang
+    		&copy; 2020 Liu Yunxiang
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -406,38 +418,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo tips</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTML5</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>

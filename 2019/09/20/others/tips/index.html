@@ -5,20 +5,20 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
   <title>hexo 使用小技巧 | Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="插入图片最稳妥的办法就是使用base64图片转换工具,将图片转换为base64格式，使用方法： 1![alt](data:image/jpeg;base64,/9...)  使用相对路径和绝对路径的方法，在hexo上传的时候无法显示。">
+  <meta name="description" content="插入图片1.使用base64图片转换工具,将图片转换为base64格式，使用方法：  1![alt](data:image/jpeg;base64,/9...)  使用相对路径和绝对路径的方法，在hexo上传的时候可能无法显示。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo 使用小技巧">
-<meta property="og:url" content="http://yoursite.com/2019/09/20/others/tips/index.html">
+<meta property="og:url" content="http://lyx-overwatch.github.io/2019/09/20/others/tips/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
-<meta property="og:description" content="插入图片最稳妥的办法就是使用base64图片转换工具,将图片转换为base64格式，使用方法： 1![alt](data:image/jpeg;base64,/9...)  使用相对路径和绝对路径的方法，在hexo上传的时候无法显示。">
+<meta property="og:description" content="插入图片1.使用base64图片转换工具,将图片转换为base64格式，使用方法：  1![alt](data:image/jpeg;base64,/9...)  使用相对路径和绝对路径的方法，在hexo上传的时候可能无法显示。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-22T01:54:27.717Z">
+<meta property="og:updated_time" content="2020-09-22T06:56:59.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 使用小技巧">
-<meta name="twitter:description" content="插入图片最稳妥的办法就是使用base64图片转换工具,将图片转换为base64格式，使用方法： 1![alt](data:image/jpeg;base64,/9...)  使用相对路径和绝对路径的方法，在hexo上传的时候无法显示。">
+<meta name="twitter:description" content="插入图片1.使用base64图片转换工具,将图片转换为base64格式，使用方法：  1![alt](data:image/jpeg;base64,/9...)  使用相对路径和绝对路径的方法，在hexo上传的时候可能无法显示。">
   
     <link rel="alternative" href="/atom.xml" title="Blog Of LiuYunxiang" type="application/atom+xml">
   
@@ -170,11 +170,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><p>最稳妥的办法就是使用base64图片转换工具,将图片转换为base64格式，使用方法：</p>
+        <h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><p>1.使用base64图片转换工具,将图片转换为base64格式，使用方法：</p>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![alt](data:image/jpeg;base64,/9...)</span><br></pre></td></tr></table></figure>
 
-<p>使用相对路径和绝对路径的方法，在hexo上传的时候无法显示。</p>
+<p>使用相对路径和绝对路径的方法，在hexo上传的时候可能无法显示。</p>
 <a id="more"></a>
+<p>2.使用标签插入的方法：</p>
+1.安装修改后兼容hexo3.0版本的hexo-asset-image插件
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/7ym0n/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<p>2._config.yml下的url设为网页地址，post_asset_folder设为true，使得hexo n新建文档时会建立一个与文档同名的文件夹，图片资源放在该文件夹内</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: http://lyx-overwatch.github.io</span><br><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
+
+<p>3.标签语法引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img 1.png %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式vs插件预览看不到图片，上传到服务器可以看到</p>
 <h4 id="文章折叠"><a href="#文章折叠" class="headerlink" title="文章折叠"></a>文章折叠</h4><p>在需要折叠的内容前加上这样一行代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
 
@@ -268,7 +281,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/20/others/tips/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://lyx-overwatch.github.io/2019/09/20/others/tips/" alt="微信分享二维码">
     </div>
 </div>
 
