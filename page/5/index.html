@@ -170,29 +170,31 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-js/methods/myrouter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js/基础/创建对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/js/methods/myrouter/">hash路由的简单实现</a>
+      <a class="article-title" href="/2020/09/22/js/基础/创建对象/">JS创建对象方法</a>
     </h1>
   
 
         
-        <a href="/2019/09/22/js/methods/myrouter/" class="archive-article-date">
-  	<time datetime="2019-09-22T15:02:33.029Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+        <a href="/2020/09/22/js/基础/创建对象/" class="archive-article-date">
+  	<time datetime="2020-09-22T08:03:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="router初始化"><a href="#router初始化" class="headerlink" title="router初始化"></a>router初始化</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Router</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.routes = &#123;&#125;;</span><br><span class="line">        <span class="keyword">this</span>.currentUrl = <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">Router.prototype.route = <span class="function"><span class="keyword">function</span>(<span class="params">path, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.routes[path] = callback || <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;<span class="comment">//给不同的hash设置不同的回调函数</span></span><br><span class="line">&#125;;</span><br><span class="line">Router.prototype.refresh = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.currentUrl = location.hash.slice(<span class="number">1</span>) || <span class="string">'/'</span>;<span class="comment">//如果存在hash值则获取到，否则设置hash值为/</span></span><br><span class="line">    <span class="keyword">this</span>.routes[<span class="keyword">this</span>.currentUrl]();<span class="comment">//根据当前的hash值来调用相对应的回调函数</span></span><br><span class="line">&#125;;</span><br><span class="line">Router.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="keyword">this</span>.refresh.bind(<span class="keyword">this</span>), <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="keyword">this</span>.refresh.bind(<span class="keyword">this</span>), <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//给window对象挂载属性</span></span><br><span class="line"><span class="built_in">window</span>.Router = <span class="keyword">new</span> Router();</span><br><span class="line"><span class="built_in">window</span>.Router.init();</span><br></pre></td></tr></table></figure>
+        <h3 id="工厂模式创建"><a href="#工厂模式创建" class="headerlink" title="工厂模式创建"></a>工厂模式创建</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">creatPerson</span>(<span class="params">name,age,job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o=<span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.name=name;</span><br><span class="line">    o.age=age;</span><br><span class="line">    o.job=job;</span><br><span class="line">    o.sayName=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1=creatPerson(<span class="string">'pitter'</span>,<span class="number">29</span>,<span class="string">'software engineer'</span>);</span><br><span class="line">person1.sayName();</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.age=age;</span><br><span class="line">    <span class="keyword">this</span>.job=job;</span><br><span class="line">    <span class="keyword">this</span>.sayName=sayName;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1=<span class="keyword">new</span> Person(<span class="string">'petter'</span>,<span class="number">29</span>,<span class="string">'software engineer'</span>);</span><br><span class="line">person1.sayName();</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/09/22/js/methods/myrouter/#more">more >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/创建对象/#more">more >></a>
         
       
 
@@ -216,7 +218,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/22/js/methods/myrouter/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/创建对象/">展开全文 >></a>
         </p>
       
 
@@ -246,30 +248,31 @@
 
 
   
-    <article id="post-webpack/webpack-start-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js/基础/eventLoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/webpack/webpack-start-1/">学习webpack</a>
+      <a class="article-title" href="/2020/09/22/js/基础/eventLoop/">JS eventLoop</a>
     </h1>
   
 
         
-        <a href="/2019/09/22/webpack/webpack-start-1/" class="archive-article-date">
-  	<time datetime="2019-09-22T14:36:17.811Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+        <a href="/2020/09/22/js/基础/eventLoop/" class="archive-article-date">
+  	<time datetime="2020-09-22T07:56:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="初识webpack"><a href="#初识webpack" class="headerlink" title="初识webpack"></a>初识webpack</h4><p>WebPack可以看做是<strong>模块打包机</strong>：<br><strong>代码转换</strong>: TypeScript 编译成 JavaScript、SCSS,LESS 编译成 CSS.<br><strong>文件优化</strong>：压缩 JavaScript、CSS、HTML 代码，压缩合并图片。<br><strong>代码分割</strong>：提取多个页面的公共代码、提取首屏不需要执行部分的代码让其异步加载。<br><strong>模块合并</strong>：在采用模块化的项目里会有很多个模块和文件，需要构建功能把模块分类合并成一个文件。<br><strong>自动刷新</strong>：监听本地源代码的变化，自动重新构建、刷新浏览器。</p>
-<p>Webpack的工作方式是：<br>把你的项目当做一个整体，通过一个给定的主文件（如：index.js），<br>Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的<strong>JavaScript文件</strong>。</p>
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 小白入门版</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>) <span class="comment">//3,2,1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 游刃有余版</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> a=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">    reject(<span class="string">'x'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'resolved'</span>) <span class="comment">//resolve 或 ，reject之后仍会执行</span></span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;,()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error1'</span>)</span><br><span class="line">    reject(<span class="string">'x'</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;,()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error2'</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">6</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">7</span>) <span class="comment">// 2,resolved,7,error1,error2,5,6,1</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/09/22/webpack/webpack-start-1/#more">more >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/eventLoop/#more">more >></a>
         
       
 
@@ -284,7 +287,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/webpack//" class="article-tag-list-link color3">webpack</a>
+        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -293,7 +296,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/22/webpack/webpack-start-1/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/eventLoop/">展开全文 >></a>
         </p>
       
 
@@ -323,29 +326,32 @@
 
 
   
-    <article id="post-data-structure/mergeKLists" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js/基础/原生js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/21/data-structure/mergeKLists/">合并k个有序链表</a>
+      <a class="article-title" href="/2020/09/22/js/基础/原生js/">JS基础知识总结</a>
     </h1>
   
 
         
-        <a href="/2019/09/21/data-structure/mergeKLists/" class="archive-article-date">
-  	<time datetime="2019-09-20T16:02:49.060Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
+        <a href="/2020/09/22/js/基础/原生js/" class="archive-article-date">
+  	<time datetime="2020-09-22T07:47:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mergeKLists = <span class="function"><span class="keyword">function</span>(<span class="params">lists</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> arr = [] <span class="comment">// 声明一个优先队列</span></span><br><span class="line">        <span class="keyword">let</span> newNode = <span class="keyword">new</span> ListNode(<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">let</span> res = newNode</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> list <span class="keyword">of</span> lists) &#123;</span><br><span class="line">            <span class="keyword">if</span> (list) &#123;</span><br><span class="line">                arr.push(list)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// 保存所有链表的头结点</span></span><br><span class="line"></span><br><span class="line">        arr.sort(mySort(<span class="string">'val'</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (arr.length) &#123; <span class="comment">// 优先队列不为空时</span></span><br><span class="line">            <span class="keyword">let</span> node = arr.shift() <span class="comment">// 最小的那个结点出栈</span></span><br><span class="line">            newNode.next = node</span><br><span class="line">            newNode = newNode.next</span><br><span class="line">            <span class="keyword">if</span> (node.next) &#123; <span class="comment">// 当前结点有后续的next结点</span></span><br><span class="line">                arr.push(node.next)</span><br><span class="line">                arr.sort(mySort(<span class="string">'val'</span>)) <span class="comment">// 重新排序</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">mySort</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n1, n2</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> a = n1[val]</span><br><span class="line">                <span class="keyword">let</span> b = n2[val]</span><br><span class="line">                <span class="keyword">return</span> a - b</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// 根据结点的值进行排序</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.next</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">per</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">'lyx'</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">closure</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> closure</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> f1 = per() <span class="comment">// 本来函数per执行完，所有变量都销毁，但是产生了闭包，闭包仍然持有对该作用域的引用</span></span><br><span class="line">    alert(f1()) <span class="comment">// f1执行在closure的词法作用域之外</span></span><br></pre></td></tr></table></figure>
 
-
+<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3>
+        
+          <a class="article-more-a" href="/2020/09/22/js/基础/原生js/#more">more >></a>
+        
       
 
       
@@ -359,7 +365,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -368,7 +374,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/21/data-structure/mergeKLists/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/js/基础/原生js/">展开全文 >></a>
         </p>
       
 
@@ -398,30 +404,27 @@
 
 
   
-    <article id="post-others/京东一面" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode/递归/搜索树转累加树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/others/京东一面/">京东一面</a>
+      <a class="article-title" href="/2020/09/22/leetcode/递归/搜索树转累加树/">搜索树转累加树</a>
     </h1>
   
 
         
-        <a href="/2019/09/20/others/京东一面/" class="archive-article-date">
-  	<time datetime="2019-09-20T03:56:12.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
+        <a href="/2020/09/22/leetcode/递归/搜索树转累加树/" class="archive-article-date">
+  	<time datetime="2020-09-22T07:34:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = &#123;<span class="attr">value</span>: <span class="string">'obj'</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  a = a * <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">  b.value = <span class="string">'new'</span></span><br><span class="line">&#125;</span><br><span class="line">f1(a)</span><br><span class="line">f2(b)</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// &#123;value: 'new'&#125;</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/09/20/others/京东一面/#more">more >></a>
-        
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">给定一个二叉搜索树（Binary Search Tree），把它转换成为累加树（Greater Tree)，使得每个节点的值是原来的节点值加上所有大于它的节点值之和。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">例如：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输入: 原始二叉搜索树:</span></span><br><span class="line"><span class="comment">              5</span></span><br><span class="line"><span class="comment">            /   \</span></span><br><span class="line"><span class="comment">           2     13</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输出: 转换为累加树:</span></span><br><span class="line"><span class="comment">             18</span></span><br><span class="line"><span class="comment">            /   \</span></span><br><span class="line"><span class="comment">          20     13</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;TreeNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> convertBST = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 设置累加器，反序中序遍历二叉树</span></span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> convertRoot = <span class="function">(<span class="params">cur</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (cur) &#123;</span><br><span class="line">      convertRoot(cur.right)</span><br><span class="line">      sum += cur.val</span><br><span class="line">      cur.val = sum</span><br><span class="line">      convertRoot(cur.left)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  convertRoot(root)</span><br><span class="line">  <span class="keyword">return</span> root</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -435,7 +438,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -444,7 +447,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/20/others/京东一面/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/leetcode/递归/搜索树转累加树/">展开全文 >></a>
         </p>
       
 
@@ -476,7 +479,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
