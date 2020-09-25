@@ -170,6 +170,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode/递归/平衡二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/15/leetcode/递归/平衡二叉树/">平衡二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/15/leetcode/递归/平衡二叉树/" class="archive-article-date">
+  	<time datetime="2020-09-15T12:37:00.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 给定一个二叉树，判断它是否是高度平衡的二叉树。</span></span><br><span class="line"><span class="comment">本题中，一棵高度平衡二叉树定义为：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//  自顶向下法</span></span><br><span class="line"><span class="keyword">var</span> isBalanced = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.abs(height(root.left) - height(root.right)) &lt;= <span class="number">1</span> &amp;&amp; isBalanced(root.left) &amp;&amp; isBalanced(root.right)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> height = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max(height(root.left), height(root.right)) + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自底向上法</span></span><br><span class="line"><span class="keyword">var</span> isBalanced = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> recur(root) != <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> recur = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> left = recur(root.left)</span><br><span class="line">  <span class="keyword">if</span> (left == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  <span class="keyword">let</span> right = recur(root.right)</span><br><span class="line">  <span class="keyword">if</span> (right == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.abs(left - right) &lt; <span class="number">2</span> ? <span class="built_in">Math</span>.max(left, right) + <span class="number">1</span> : <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/15/leetcode/递归/平衡二叉树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-data-structure/creatTree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -372,81 +445,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/09/22/webpack/webpack-start-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-data-structure/mergeKLists" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/21/data-structure/mergeKLists/">合并k个有序链表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/21/data-structure/mergeKLists/" class="archive-article-date">
-  	<time datetime="2019-09-20T16:02:49.060Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mergeKLists = <span class="function"><span class="keyword">function</span>(<span class="params">lists</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> arr = [] <span class="comment">// 声明一个优先队列</span></span><br><span class="line">        <span class="keyword">let</span> newNode = <span class="keyword">new</span> ListNode(<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">let</span> res = newNode</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> list <span class="keyword">of</span> lists) &#123;</span><br><span class="line">            <span class="keyword">if</span> (list) &#123;</span><br><span class="line">                arr.push(list)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// 保存所有链表的头结点</span></span><br><span class="line"></span><br><span class="line">        arr.sort(mySort(<span class="string">'val'</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (arr.length) &#123; <span class="comment">// 优先队列不为空时</span></span><br><span class="line">            <span class="keyword">let</span> node = arr.shift() <span class="comment">// 最小的那个结点出栈</span></span><br><span class="line">            newNode.next = node</span><br><span class="line">            newNode = newNode.next</span><br><span class="line">            <span class="keyword">if</span> (node.next) &#123; <span class="comment">// 当前结点有后续的next结点</span></span><br><span class="line">                arr.push(node.next)</span><br><span class="line">                arr.sort(mySort(<span class="string">'val'</span>)) <span class="comment">// 重新排序</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">mySort</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n1, n2</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> a = n1[val]</span><br><span class="line">                <span class="keyword">let</span> b = n2[val]</span><br><span class="line">                <span class="keyword">return</span> a - b</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// 根据结点的值进行排序</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.next</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/21/data-structure/mergeKLists/">展开全文 >></a>
         </p>
       
 
