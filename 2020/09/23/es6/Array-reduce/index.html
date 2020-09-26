@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
-  <title>Array.reduce妙用 | Blog Of LiuYunxiang</title>
+  <title>Array.reduce用法 | Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1234567891011// 扁平化数组let getOneDimensionalArray = arr =&amp;gt; &amp;#123;  return arr.reduce((pre, next) =&amp;gt; &amp;#123;    return Array.isArray(next)      ? next.every(item =&amp;gt; !Array.isArray(item))        ?">
+  <meta name="description" content="reduce作用reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。  reduce为数组中的每一个元素依次执行callback函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：   accumulator 累计器,累计回调的返回值; 它是上一次调用回调时返回的累积值 currentValue 数组中正在处理的元素。 curr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Array.reduce妙用">
+<meta property="og:title" content="Array.reduce用法">
 <meta property="og:url" content="http://lyx-overwatch.github.io/2020/09/23/es6/Array-reduce/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
-<meta property="og:description" content="1234567891011// 扁平化数组let getOneDimensionalArray = arr =&amp;gt; &amp;#123;  return arr.reduce((pre, next) =&amp;gt; &amp;#123;    return Array.isArray(next)      ? next.every(item =&amp;gt; !Array.isArray(item))        ?">
+<meta property="og:description" content="reduce作用reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。  reduce为数组中的每一个元素依次执行callback函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：   accumulator 累计器,累计回调的返回值; 它是上一次调用回调时返回的累积值 currentValue 数组中正在处理的元素。 curr">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-23T03:36:35.938Z">
+<meta property="og:updated_time" content="2020-09-26T06:57:28.281Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Array.reduce妙用">
-<meta name="twitter:description" content="1234567891011// 扁平化数组let getOneDimensionalArray = arr =&amp;gt; &amp;#123;  return arr.reduce((pre, next) =&amp;gt; &amp;#123;    return Array.isArray(next)      ? next.every(item =&amp;gt; !Array.isArray(item))        ?">
+<meta name="twitter:title" content="Array.reduce用法">
+<meta name="twitter:description" content="reduce作用reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。  reduce为数组中的每一个元素依次执行callback函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：   accumulator 累计器,累计回调的返回值; 它是上一次调用回调时返回的累积值 currentValue 数组中正在处理的元素。 curr">
   
     <link rel="alternative" href="/atom.xml" title="Blog Of LiuYunxiang" type="application/atom+xml">
   
@@ -179,7 +179,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Array.reduce妙用
+      Array.reduce用法
     </h1>
   
 
@@ -192,7 +192,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扁平化数组</span></span><br><span class="line"><span class="keyword">let</span> getOneDimensionalArray = <span class="function"><span class="params">arr</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">pre, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(next)</span><br><span class="line">      ? next.every(<span class="function"><span class="params">item</span> =&gt;</span> !<span class="built_in">Array</span>.isArray(item))</span><br><span class="line">        ? pre.concat(next)</span><br><span class="line">        : pre.concat(getOneDimensionalArray(next))</span><br><span class="line">      : pre.concat(next)</span><br><span class="line">  &#125;, [])</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getOneDimensionalArray([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, [<span class="number">3</span>, [<span class="number">2</span>]]]], [<span class="number">2</span>], [<span class="number">3</span>]]))</span><br></pre></td></tr></table></figure>
+        <h4 id="reduce作用"><a href="#reduce作用" class="headerlink" title="reduce作用"></a>reduce作用</h4><p>reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，<b>将其结果汇总为单个返回值。</b></p>
+
+<p>reduce为数组中的每一个元素依次执行callback函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：</p>
+
+<ol>
+<li>accumulator 累计器,累计回调的返回值; 它是上一次调用回调时返回的累积值</li>
+<li>currentValue 数组中正在处理的元素。</li>
+<li>currentIndex 数组中正在处理的当前元素的索引。</li>
+<li>array 调用reduce()的数组</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扁平化数组</span></span><br><span class="line"><span class="keyword">let</span> getOneDimensionalArray = <span class="function"><span class="params">arr</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(cur)</span><br><span class="line">      ? next.every(<span class="function"><span class="params">item</span> =&gt;</span> !<span class="built_in">Array</span>.isArray(item))</span><br><span class="line">        ? pre.concat(cur)</span><br><span class="line">        : pre.concat(getOneDimensionalArray(cur))</span><br><span class="line">      : pre.concat(cur)</span><br><span class="line">  &#125;, [])</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getOneDimensionalArray([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, [<span class="number">3</span>, [<span class="number">2</span>]]]], [<span class="number">2</span>], [<span class="number">3</span>]]))</span><br></pre></td></tr></table></figure>
 
 
       
