@@ -170,6 +170,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-react/start/redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/26/react/start/redux/">Redux基础</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/26/react/start/redux/" class="archive-article-date">
+  	<time datetime="2020-09-26T08:57:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="考虑使用Redux的情景"><a href="#考虑使用Redux的情景" class="headerlink" title="考虑使用Redux的情景"></a>考虑使用Redux的情景</h4><ol>
+<li>某个组件的状态，需要共享</li>
+<li>某个状态需要在任何地方都可以拿到</li>
+<li>一个组件需要改变全局状态</li>
+<li>一个组件需要改变另一个组件的状态</li>
+</ol>
+<p>Redux 的设计思想</p>
+
+<ol>
+<li>Web 应用是一个状态机，视图与状态是一一对应的。</li>
+<li>所有的状态，保存在一个对象里面。</li>
+</ol>
+<h4 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h4><p>Redux 提供<b>createStore</b>这个函数，用来生成 Store</p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer);</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/09/26/react/start/redux/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/26/react/start/redux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-es6/深浅复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -387,92 +477,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/25/leetcode/dfs/从中序与后序遍历序列构造二叉树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react/start/start2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/react/start/start2/">React Hook基础</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/25/react/start/start2/" class="archive-article-date">
-  	<time datetime="2020-09-25T07:24:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="React-Hook-是什么"><a href="#React-Hook-是什么" class="headerlink" title="React Hook 是什么"></a>React Hook 是什么</h4><p>Hook 是一些可以让你在函数组件里“钩入” React state 及生命周期等特性的函数。</p>
-
-<p>Hook 不能在 class 组件中使用 —— 这使得你不使用 class 也能使用 React。React 内置了一些像 useState 这样的 Hook。你也可以创建你自己的 Hook 来复用不同组件之间的状态逻辑。</p>
-
-<h4 id="Hook-使用规则"><a href="#Hook-使用规则" class="headerlink" title="Hook 使用规则"></a>Hook 使用规则</h4><p>Hook 就是 JavaScript 函数，但是使用它们会有两个额外的规则：</p>
-
-<ol>
-<li>只能在函数最外层调用 Hook。不要在循环、条件判断或者子函数中调用。</li>
-<li>只能在 React 的函数组件或自定义Hook中调用 Hook。不要在其他 JavaScript 函数中调用。</li>
-</ol>
-<h2 id="使用-State-Hook"><a href="#使用-State-Hook" class="headerlink" title="使用 State Hook"></a>使用 State Hook</h2>
-        
-          <a class="article-more-a" href="/2020/09/25/react/start/start2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/react/start/start2/">展开全文 >></a>
         </p>
       
 

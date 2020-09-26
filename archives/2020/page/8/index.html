@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
-  <title>Blog Of LiuYunxiang</title>
+  <title>Archives: 2020 | Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Blog Of LiuYunxiang">
-<meta property="og:url" content="http://lyx-overwatch.github.io/page/8/index.html">
+<meta property="og:url" content="http://lyx-overwatch.github.io/archives/2020/page/8/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -170,35 +170,35 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-leetcode/递归/平衡二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/09/15/leetcode/递归/平衡二叉树/" class="archive-article-date">
+  	<time datetime="2020-09-15T12:37:00.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/15/leetcode/递归/平衡二叉树/">平衡二叉树</a>
+      <a class="archive-article-title" href="/2020/09/15/leetcode/递归/平衡二叉树/">平衡二叉树</a>
     </h1>
   
 
-        
-        <a href="/2020/09/15/leetcode/递归/平衡二叉树/" class="archive-article-date">
-  	<time datetime="2020-09-15T12:37:00.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 给定一个二叉树，判断它是否是高度平衡的二叉树。</span></span><br><span class="line"><span class="comment">本题中，一棵高度平衡二叉树定义为：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//  自顶向下法</span></span><br><span class="line"><span class="keyword">var</span> isBalanced = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.abs(height(root.left) - height(root.right)) &lt;= <span class="number">1</span> &amp;&amp; isBalanced(root.left) &amp;&amp; isBalanced(root.right)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> height = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max(height(root.left), height(root.right)) + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自底向上法</span></span><br><span class="line"><span class="keyword">var</span> isBalanced = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> recur(root) != <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> recur = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> left = recur(root.left)</span><br><span class="line">  <span class="keyword">if</span> (left == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  <span class="keyword">let</span> right = recur(root.right)</span><br><span class="line">  <span class="keyword">if</span> (right == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.abs(left - right) &lt; <span class="number">2</span> ? <span class="built_in">Math</span>.max(left, right) + <span class="number">1</span> : <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+        <div class="article-info info-on-right">
+          
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -211,272 +211,19 @@
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/15/leetcode/递归/平衡二叉树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-data-structure/creatTree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/data-structure/creatTree/">创建二叉树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/22/data-structure/creatTree/" class="archive-article-date">
-  	<time datetime="2019-09-22T15:02:52.329Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="根据一个数组（二叉树的中序遍历），创建一颗二叉树"><a href="#根据一个数组（二叉树的中序遍历），创建一颗二叉树" class="headerlink" title="根据一个数组（二叉树的中序遍历），创建一颗二叉树"></a>根据一个数组（二叉树的中序遍历），创建一颗二叉树</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">treeNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.left=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.right=<span class="literal">null</span>;</span><br><span class="line">    &#125; <span class="comment">// 定义树节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> index=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">creatTree</span>(<span class="params">root,arr</span>) </span>&#123;</span><br><span class="line">    root.val=arr[index++];</span><br><span class="line">    <span class="keyword">if</span>(root.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    root.left=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.left,arr); <span class="comment">// 递归创建左子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.left.val==<span class="literal">null</span>)&#123;  </span><br><span class="line">        root.left=<span class="literal">null</span>;  <span class="comment">// 当前结点为空值，则没有左子结点</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    root.right=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.right,arr); <span class="comment">// 递归创建右子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.right.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        root.right=<span class="literal">null</span>; <span class="comment">// 当前结点为空值，则没有右子结点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> root=<span class="keyword">new</span> treeNode();</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'D'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'E'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'C'</span>, <span class="string">'F'</span>,<span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'G'</span>, <span class="literal">null</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="built_in">console</span>.log(creatTree(root,arr));</span><br></pre></td></tr></table></figure>
-
-<p>最后输出这样一个树结构：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">treeNode &#123;<span class="attr">val</span>: <span class="string">"A"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br><span class="line">-left: treeNode &#123;<span class="attr">val</span>: <span class="string">"B"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br><span class="line">-right: treeNode &#123;<span class="attr">val</span>: <span class="string">"C"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/22/data-structure/creatTree/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js/methods/myrouter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/js/methods/myrouter/">hash路由的简单实现</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/22/js/methods/myrouter/" class="archive-article-date">
-  	<time datetime="2019-09-22T15:02:33.029Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="router初始化"><a href="#router初始化" class="headerlink" title="router初始化"></a>router初始化</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Router</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.routes = &#123;&#125;;</span><br><span class="line">        <span class="keyword">this</span>.currentUrl = <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">Router.prototype.route = <span class="function"><span class="keyword">function</span>(<span class="params">path, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.routes[path] = callback || <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;<span class="comment">//给不同的hash设置不同的回调函数</span></span><br><span class="line">&#125;;</span><br><span class="line">Router.prototype.refresh = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.currentUrl = location.hash.slice(<span class="number">1</span>) || <span class="string">'/'</span>;<span class="comment">//如果存在hash值则获取到，否则设置hash值为/</span></span><br><span class="line">    <span class="keyword">this</span>.routes[<span class="keyword">this</span>.currentUrl]();<span class="comment">//根据当前的hash值来调用相对应的回调函数</span></span><br><span class="line">&#125;;</span><br><span class="line">Router.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="keyword">this</span>.refresh.bind(<span class="keyword">this</span>), <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="keyword">this</span>.refresh.bind(<span class="keyword">this</span>), <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//给window对象挂载属性</span></span><br><span class="line"><span class="built_in">window</span>.Router = <span class="keyword">new</span> Router();</span><br><span class="line"><span class="built_in">window</span>.Router.init();</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/09/22/js/methods/myrouter/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/22/js/methods/myrouter/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-webpack/webpack-start-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/webpack/webpack-start-1/">学习webpack</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/22/webpack/webpack-start-1/" class="archive-article-date">
-  	<time datetime="2019-09-22T14:36:17.811Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="初识webpack"><a href="#初识webpack" class="headerlink" title="初识webpack"></a>初识webpack</h4><p>WebPack可以看做是<strong>模块打包机</strong>：<br><strong>代码转换</strong>: TypeScript 编译成 JavaScript、SCSS,LESS 编译成 CSS.<br><strong>文件优化</strong>：压缩 JavaScript、CSS、HTML 代码，压缩合并图片。<br><strong>代码分割</strong>：提取多个页面的公共代码、提取首屏不需要执行部分的代码让其异步加载。<br><strong>模块合并</strong>：在采用模块化的项目里会有很多个模块和文件，需要构建功能把模块分类合并成一个文件。<br><strong>自动刷新</strong>：监听本地源代码的变化，自动重新构建、刷新浏览器。</p>
-<p>Webpack的工作方式是：<br>把你的项目当做一个整体，通过一个给定的主文件（如：index.js），<br>Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的<strong>JavaScript文件</strong>。</p>
-        
-          <a class="article-more-a" href="/2019/09/22/webpack/webpack-start-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/webpack//" class="article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/22/webpack/webpack-start-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/archives/2020/page/7/">&laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/6/">6</a><a class="page-number" href="/archives/2020/page/7/">7</a><span class="page-number current">8</span>
     </nav>
   
 
@@ -500,9 +247,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

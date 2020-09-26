@@ -170,6 +170,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode/回溯/组数总和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/25/leetcode/回溯/组数总和/">组数总和</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/25/leetcode/回溯/组数总和/" class="archive-article-date">
+  	<time datetime="2020-09-25T06:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; candidates</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</span></span><br><span class="line"><span class="comment">candidates 中的数字可以无限制重复被选取。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">说明：</span></span><br><span class="line"><span class="comment">所有数字（包括 target）都是正整数。</span></span><br><span class="line"><span class="comment">解集不能包含重复的组合。 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">示例 1：</span></span><br><span class="line"><span class="comment">输入：candidates = [2,3,6,7], target = 7,</span></span><br><span class="line"><span class="comment">所求解集为：</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">  [7],</span></span><br><span class="line"><span class="comment">  [2,2,3]</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment"> 思路：我们可以先选择一个数字，用target减去他，然后再重复选择，当target等于0的时候说明我们找到了一种组合。当target小于0的时候，说明没有找到合适的，我们回到上一步再重新选择数字</span></span><br><span class="line"><span class="comment"> * @return &#123;number[][]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> combinationSum = <span class="function"><span class="keyword">function</span> (<span class="params">candidates, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  getRes(res, [], candidates, target, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> getRes = <span class="function">(<span class="params">res, cur, candidates, target, start</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (target === <span class="number">0</span>) &#123;</span><br><span class="line">    res.push(cur.slice())</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = start; i &lt; candidates.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (target &lt; candidates[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//选择当前节点，类似于从当前节点开始往下遍历</span></span><br><span class="line">    cur.push(candidates[i])</span><br><span class="line">    getRes(res, cur, candidates, target - candidates[i], i)</span><br><span class="line">    <span class="comment">//当回到当前分支的时候我们把该节点给移除，然后 选择同一层的下一个节点，沿着这个节点分支走下去</span></span><br><span class="line">    cur.pop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/25/leetcode/回溯/组数总和/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode/回溯/电话号码的组合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -374,82 +447,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/23/data-structure/反转链表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js/methods/拖拽拼图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/23/js/methods/拖拽拼图/">原生Js实现拖拽拼图效果</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/23/js/methods/拖拽拼图/" class="archive-article-date">
-  	<time datetime="2020-09-23T02:59:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="以下代码可直接运行"><a href="#以下代码可直接运行" class="headerlink" title="以下代码可直接运行"></a>以下代码可直接运行</h5>
-        
-          <a class="article-more-a" href="/2020/09/23/js/methods/拖拽拼图/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/23/js/methods/拖拽拼图/">展开全文 >></a>
         </p>
       
 
