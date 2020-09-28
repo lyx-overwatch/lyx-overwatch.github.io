@@ -170,6 +170,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode/递归/填充树节点的下一个右侧节点指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/28/leetcode/递归/填充树节点的下一个右侧节点指针/">填充树节点的下一个右侧节点指针</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/28/leetcode/递归/填充树节点的下一个右侧节点指针/" class="archive-article-date">
+  	<time datetime="2020-09-28T07:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>给定一个二叉树,填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
+
+<p>初始状态下，所有 next 指针都被设置为 NULL。</p>
+
+<img src="/2020/09/28/leetcode/递归/填充树节点的下一个右侧节点指针/sample.png">
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * // Definition for a Node.</span></span><br><span class="line"><span class="comment"> * function Node(val, left, right, next) &#123;</span></span><br><span class="line"><span class="comment"> *    this.val = val === undefined ? null : val;</span></span><br><span class="line"><span class="comment"> *    this.left = left === undefined ? null : left;</span></span><br><span class="line"><span class="comment"> *    this.right = right === undefined ? null : right;</span></span><br><span class="line"><span class="comment"> *    this.next = next === undefined ? null : next;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;Node&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;Node&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> connect = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    <span class="comment">// 使用广度优先遍历，每层节点保存在一个curArr数组中，根据题意，数组中的元素的next就是下一个元素，最后一个元素指向null，关键就是构造广度优先遍历函数</span></span><br><span class="line">    <span class="keyword">let</span> fillNext = <span class="function">(<span class="params">curArr</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!curArr.length) <span class="keyword">return</span></span><br><span class="line">        <span class="comment">// 下一层的节点</span></span><br><span class="line">        <span class="keyword">let</span> nextArr = []</span><br><span class="line">        <span class="comment">// 对当前层的节点进行遍历</span></span><br><span class="line">        <span class="keyword">while</span>(curArr.length &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> cur = curArr.shift()</span><br><span class="line">            <span class="comment">// 判断是否遍历到最后一个节点，最后一个节点指向null，否则指向下个节点</span></span><br><span class="line">            cur.next = curArr[<span class="number">0</span>] == <span class="literal">null</span> ? <span class="literal">null</span> : curArr[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span> (cur.left) &#123;</span><br><span class="line">              <span class="comment">//当前层的节点具有左子节点，加入下一层的节点中</span></span><br><span class="line">                nextArr.push(cur.left)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cur.right) &#123;</span><br><span class="line">              <span class="comment">//当前层的节点具有右子节点，加入下一层的节点中</span></span><br><span class="line">                nextArr.push(cur.right)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        curArr = nextArr</span><br><span class="line">        <span class="comment">// 遍历下一层的节点</span></span><br><span class="line">        fillNext(nextArr)</span><br><span class="line">    &#125;</span><br><span class="line">    fillNext([root])</span><br><span class="line">    <span class="keyword">return</span> root</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/28/leetcode/递归/填充树节点的下一个右侧节点指针/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-react/start/redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -199,7 +280,7 @@
 <p>Redux 的设计思想</p>
 
 <ol>
-<li>Web 应用是一个状态机，视图与状态是一一对应的。</li>
+<li>Web应用是一个状态机，视图与状态是一一对应的。</li>
 <li>所有的状态，保存在一个对象里面。</li>
 </ol>
 <h4 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h4><p>Redux 提供<b>createStore</b>这个函数，用来生成 Store</p>
@@ -404,79 +485,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/26/css/css-margin/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/dfs/从中序与后序遍历序列构造二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/dfs/从中序与后序遍历序列构造二叉树/">从中序与后序遍历序列构造二叉树</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/25/leetcode/dfs/从中序与后序遍历序列构造二叉树/" class="archive-article-date">
-  	<time datetime="2020-09-25T12:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment">根据一棵树的中序遍历与后序遍历构造二叉树。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">注意:</span></span><br><span class="line"><span class="comment">你可以假设树中没有重复的元素。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">例如，给出</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">中序遍历 inorder = [9,3,15,20,7]</span></span><br><span class="line"><span class="comment">后序遍历 postorder = [9,15,7,20,3]</span></span><br><span class="line"><span class="comment">返回如下的二叉树：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    3</span></span><br><span class="line"><span class="comment">   / \</span></span><br><span class="line"><span class="comment">  9  20</span></span><br><span class="line"><span class="comment">    /  \</span></span><br><span class="line"><span class="comment">   15   7</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; inorder</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; postorder</span></span><br><span class="line"><span class="comment"> * @return &#123;TreeNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> buildTree = <span class="function"><span class="keyword">function</span> (<span class="params">inorder, postorder</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!inorder.length) <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  <span class="comment">// 后序遍历的最后一个值为根节点的值</span></span><br><span class="line">  <span class="keyword">let</span> rootVal = postorder.pop()</span><br><span class="line">  <span class="keyword">let</span> root = <span class="keyword">new</span> TreeNode(rootVal)</span><br><span class="line">  <span class="keyword">let</span> rootIndex = inorder.indexOf(rootVal)</span><br><span class="line">  <span class="comment">// 左子树的前序遍历数组</span></span><br><span class="line">  <span class="keyword">let</span> leftInorder = inorder.slice(<span class="number">0</span>, rootIndex)</span><br><span class="line">  <span class="comment">// 右子树的前序遍历数组</span></span><br><span class="line">  <span class="keyword">let</span> rightInorder = inorder.slice(rootIndex + <span class="number">1</span>)</span><br><span class="line">  <span class="comment">// 先遍历根节点的右子树，等到右子树全部遍历完，剩下的postorder就是左子树的后序遍历结果</span></span><br><span class="line">  root.right = buildTree(rightInorder, postorder)</span><br><span class="line">  <span class="comment">// 必须先遍历右子树再遍历左子树</span></span><br><span class="line">  root.left = buildTree(leftInorder, postorder)</span><br><span class="line">  <span class="keyword">return</span> root</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/dfs/从中序与后序遍历序列构造二叉树/">展开全文 >></a>
         </p>
       
 

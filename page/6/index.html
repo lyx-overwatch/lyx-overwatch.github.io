@@ -170,6 +170,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-data-structure/广度优先遍历二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/23/data-structure/广度优先遍历二叉树/">广度优先遍历二叉树Js实现</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/23/data-structure/广度优先遍历二叉树/" class="archive-article-date">
+  	<time datetime="2020-09-23T02:41:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">treeNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.val=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.left=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.right=<span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> index=<span class="number">0</span>;</span><br><span class="line"><span class="comment">// 创建二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">creatTree</span>(<span class="params">root,arr</span>) </span>&#123;</span><br><span class="line">    root.val=arr[index++];</span><br><span class="line">    <span class="keyword">if</span>(root.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    root.left=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.left,arr);</span><br><span class="line">    <span class="keyword">if</span>(root.left.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        root.left=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    root.right=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.right,arr);</span><br><span class="line">    <span class="keyword">if</span>(root.right.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        root.right=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> root=<span class="keyword">new</span> treeNode();</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'D'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'E'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'C'</span>, <span class="string">'F'</span>,<span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'G'</span>, <span class="literal">null</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="keyword">let</span> tree=creatTree(root,arr);</span><br><span class="line"><span class="built_in">console</span>.log(tree);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 广度优先遍历二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">levelorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr=[];</span><br><span class="line">    arr.push(root);</span><br><span class="line">    <span class="keyword">let</span> pointer=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(pointer&lt;arr.length)&#123;</span><br><span class="line">        <span class="keyword">let</span> node=arr[pointer++];</span><br><span class="line">        <span class="built_in">console</span>.log(node.val);</span><br><span class="line">        <span class="keyword">if</span>(node.left!==<span class="literal">null</span>)&#123;</span><br><span class="line">            arr.push(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(node.right!==<span class="literal">null</span>)&#123;</span><br><span class="line">            arr.push(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">levelorderTree(tree);</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/23/data-structure/广度优先遍历二叉树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js/基础/继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -375,84 +450,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/22/js/基础/eventLoop/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js/基础/原生js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/js/基础/原生js/">JS基础知识总结</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/22/js/基础/原生js/" class="archive-article-date">
-  	<time datetime="2020-09-22T07:47:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">per</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">'lyx'</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">closure</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> closure</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> f1 = per() <span class="comment">// 本来函数per执行完，所有变量都销毁，但是产生了闭包，闭包仍然持有对该作用域的引用</span></span><br><span class="line">    alert(f1()) <span class="comment">// f1执行在closure的词法作用域之外</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3>
-        
-          <a class="article-more-a" href="/2020/09/22/js/基础/原生js/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/22/js/基础/原生js/">展开全文 >></a>
         </p>
       
 

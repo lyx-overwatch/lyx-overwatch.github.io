@@ -170,6 +170,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode/字符串/回文子串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/25/leetcode/字符串/回文子串/">回文子串</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/25/leetcode/字符串/回文子串/" class="archive-article-date">
+  	<time datetime="2020-09-25T06:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; s</span></span><br><span class="line"><span class="comment">给定一个字符串，你的任务是计算这个字符串中有多少个回文子串。</span></span><br><span class="line"><span class="comment">具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</span></span><br><span class="line"><span class="comment">示例：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输入："aaa"</span></span><br><span class="line"><span class="comment">输出：6</span></span><br><span class="line"><span class="comment">解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa"</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> countSubstrings = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> len = s.length</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> left = i </span><br><span class="line">        <span class="keyword">let</span> right = i </span><br><span class="line">        <span class="keyword">let</span> curLeft = left</span><br><span class="line">        <span class="keyword">let</span> curRight = right</span><br><span class="line">        <span class="comment">// 当前节点向左右拓展，判断是否为回文串</span></span><br><span class="line">        <span class="keyword">while</span> (curLeft &gt;= <span class="number">0</span> &amp;&amp; curRight &lt;= len <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[curLeft] == s[curRight]) &#123;</span><br><span class="line">                res ++</span><br><span class="line">                curLeft --</span><br><span class="line">                curRight ++</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当前节点与下个节点相同，两个节点同时向左右拓展，判断是否为回文串</span></span><br><span class="line">        <span class="keyword">if</span> (s[i + <span class="number">1</span>] &amp;&amp; s[i] == s[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            right = i + <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; right &lt;= len - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s[left] == s[right]) &#123;</span><br><span class="line">                    res ++</span><br><span class="line">                    left --</span><br><span class="line">                    right ++</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/25/leetcode/字符串/回文子串/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode/字符串/字符串相乘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -360,81 +435,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/25/leetcode/数组/下一个排列/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/回溯/复原ip" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/回溯/复原ip/">复原ip</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/25/leetcode/回溯/复原ip/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; s</span></span><br><span class="line"><span class="comment"> * @return &#123;string[]&#125;</span></span><br><span class="line"><span class="comment">给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</span></span><br><span class="line"><span class="comment">有效的 IP 地址正好由四个整数（每个整数位于 0 到 255 之间组成），整数之间用 '.' 分隔。</span></span><br><span class="line"><span class="comment">示例:</span></span><br><span class="line"><span class="comment">输入: "25525511135"</span></span><br><span class="line"><span class="comment">输出: ["255.255.11.135", "255.255.111.35"]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> restoreIpAddresses = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s.length &gt; <span class="number">12</span> || s.length &lt; <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  <span class="keyword">let</span> dfs = <span class="function">(<span class="params">subRes, start</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 有四个满足条件的子串，并且遍历到底了作为一种结果</span></span><br><span class="line">    <span class="keyword">if</span> (subRes.length === <span class="number">4</span> &amp;&amp; start === s.length) &#123;</span><br><span class="line">      res.push(subRes.join(<span class="string">'.'</span>))</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 有四个满足条件的子串，并且未遍历，那么不满足条件退出</span></span><br><span class="line">    <span class="keyword">if</span> (subRes.length === <span class="number">4</span> &amp;&amp; start &lt; s.length) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> len = <span class="number">1</span>; len &lt;= <span class="number">3</span>; len++) &#123;</span><br><span class="line">      <span class="keyword">let</span> str = s.substring(start, start + len)</span><br><span class="line">      <span class="comment">// 长度大于1并以0开头，不满足</span></span><br><span class="line">      <span class="keyword">if</span> (len &gt; <span class="number">1</span> &amp;&amp; s[start] == <span class="number">0</span>) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 大于255，不满足</span></span><br><span class="line">      <span class="keyword">if</span> (len === <span class="number">3</span> &amp;&amp; str &gt; <span class="number">255</span>) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 超出边界，不满足</span></span><br><span class="line">      <span class="keyword">if</span> (s[start + len - <span class="number">1</span>] == <span class="literal">undefined</span>) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 将该子串作为结果保留</span></span><br><span class="line">      subRes.push(str)</span><br><span class="line">      <span class="comment">// 遍历剩下的子串</span></span><br><span class="line">      dfs(subRes, start + len)</span><br><span class="line">      <span class="comment">// 如果没有找到满足条件的四个子串，证明上一步保留的字符串无法构成ip字符，回撤，继续下个for循环</span></span><br><span class="line">      subRes.pop()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dfs([], <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/回溯/复原ip/">展开全文 >></a>
         </p>
       
 
