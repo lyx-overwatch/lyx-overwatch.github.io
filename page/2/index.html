@@ -170,6 +170,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-es6/深浅复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/26/es6/深浅复制/">实现深复制，浅复制</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/26/es6/深浅复制/" class="archive-article-date">
+  	<time datetime="2020-09-26T07:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="深复制"><a href="#深复制" class="headerlink" title="深复制"></a>深复制</h4><p>JSON方法实现</p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> deepCopy=<span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> tmp=<span class="built_in">JSON</span>.stringify(obj)</span><br><span class="line">	<span class="keyword">let</span> res=<span class="built_in">JSON</span>.parse(tmp)</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>for循环实现</p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">      <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span>) &#123;</span><br><span class="line">          result[key] = deepCopy(obj[key])  <span class="comment">//递归复制</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          result[key] = obj[key]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="浅复制"><a href="#浅复制" class="headerlink" title="浅复制"></a>浅复制</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> target = []</span><br><span class="line"><span class="keyword">let</span> testArr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="built_in">Object</span>.assign(target, testArr)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/es6//" class="article-tag-list-link color4">es6</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/26/es6/深浅复制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-css/css-margin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -392,79 +473,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/25/react/start/start2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/dfs/钥匙和房间" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/dfs/钥匙和房间/">钥匙和房间</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/25/leetcode/dfs/钥匙和房间/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:56:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[][]&#125; rooms</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">有 N 个房间，开始时你位于 0 号房间。每个房间有不同的号码：0，1，2，...，N-1，并且房间里可能有一些钥匙能使你进入下一个房间。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">在形式上，对于每个房间 i 都有一个钥匙列表 rooms[i]，每个钥匙 rooms[i][j] 由 [0,1，...，N-1] 中的一个整数表示，其中 N = rooms.length。 钥匙 rooms[i][j] = v 可以打开编号为 v 的房间。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">最初，除 0 号房间外的其余所有房间都被锁住。</span></span><br><span class="line"><span class="comment">你可以自由地在房间之间来回走动。</span></span><br><span class="line"><span class="comment">如果能进入每个房间返回 true，否则返回 false。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> canVisitAllRooms = <span class="function"><span class="keyword">function</span> (<span class="params">rooms</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (rooms.length &lt;= <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">let</span> len = rooms.length</span><br><span class="line">  <span class="comment">// 记录当前房间是否被访问过</span></span><br><span class="line">  <span class="keyword">let</span> visitedArr = <span class="keyword">new</span> <span class="built_in">Array</span>(len)</span><br><span class="line">  <span class="keyword">let</span> res = <span class="number">0</span> </span><br><span class="line">  <span class="keyword">let</span> getTarget = <span class="function">(<span class="params">curRooms, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 当前被访问了</span></span><br><span class="line">    visitedArr[index] = <span class="literal">true</span></span><br><span class="line">    res ++</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; curRooms[index].length; i++) &#123;</span><br><span class="line">      <span class="comment">// 没有被访问就继续深度搜索</span></span><br><span class="line">      <span class="keyword">if</span> (!visitedArr[curRooms[index][i]]) &#123;</span><br><span class="line">        getTarget(curRooms, curRooms[index][i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  getTarget(rooms, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res == len</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(canVisitAllRooms([[<span class="number">2</span>], [], [<span class="number">1</span>]]))</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/dfs/钥匙和房间/">展开全文 >></a>
         </p>
       
 

@@ -170,6 +170,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode/数组/递增子序列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/25/leetcode/数组/递增子序列/">递增子序列</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/25/leetcode/数组/递增子序列/" class="archive-article-date">
+  	<time datetime="2020-09-25T06:24:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @return &#123;number[][]&#125;</span></span><br><span class="line"><span class="comment">给定一个整型数组, 你的任务是找到所有该数组的递增子序列，递增子序列的长度至少是2。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">示例:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输入: [4, 6, 7, 7]</span></span><br><span class="line"><span class="comment">输出: [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7], [4,7,7]]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> findSubsequences = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  <span class="keyword">let</span> subRes = []</span><br><span class="line">  <span class="keyword">let</span> findSubRes = <span class="function">(<span class="params">cur, pre</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 当前递归终止条件，数组遍历一遍</span></span><br><span class="line">    <span class="keyword">if</span> (cur == nums.length) &#123;</span><br><span class="line">      <span class="comment">// 长度大于2，满足条件保存下来</span></span><br><span class="line">      <span class="keyword">if</span> (subRes.length &gt;= <span class="number">2</span>)&#123;</span><br><span class="line">        res.push([].concat(subRes))</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 数组当前值比前一个大，构成上升条件</span></span><br><span class="line">    <span class="keyword">if</span> (nums[cur] &gt;= pre) &#123;</span><br><span class="line">      <span class="comment">//入栈</span></span><br><span class="line">      subRes.push(nums[cur])</span><br><span class="line">      <span class="comment">// 继续递归</span></span><br><span class="line">      findSubRes(cur + <span class="number">1</span>, nums[cur])</span><br><span class="line">      <span class="comment">// 出栈</span></span><br><span class="line">      subRes.pop()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 数组当前值不比前一个大，下标加1，继续递归</span></span><br><span class="line">    <span class="keyword">if</span> (nums[cur] != pre) &#123;</span><br><span class="line">      findSubRes(cur + <span class="number">1</span>, pre)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  findSubRes(<span class="number">0</span>, <span class="number">-1000</span>)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line">findSubsequences([<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">7</span>])</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/25/leetcode/数组/递增子序列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode/数组/下一个排列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -362,79 +435,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/25/leetcode/回溯/组数总和/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode/回溯/电话号码的组合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/回溯/电话号码的组合/">电话号码的组合</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/25/leetcode/回溯/电话号码的组合/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; digits</span></span><br><span class="line"><span class="comment"> * @return &#123;string[]&#125;</span></span><br><span class="line"><span class="comment"> * 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">给出数字到字母的映射（与电话按键相同）。注意 1 不对应任何字母。</span></span><br><span class="line"><span class="comment">示例:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输入："23"</span></span><br><span class="line"><span class="comment">输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> letterCombinations = <span class="function"><span class="keyword">function</span> (<span class="params">digits</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 声明一个数组，数组下标对应电话号码数字</span></span><br><span class="line">  <span class="keyword">let</span> arr = [<span class="string">''</span>, <span class="string">''</span>, <span class="string">'abc'</span>, <span class="string">'def'</span>, <span class="string">'ghi'</span>, <span class="string">'jkl'</span>, <span class="string">'mno'</span>, <span class="string">'pqrs'</span>, <span class="string">'tuv'</span>, <span class="string">'wxyz'</span>]</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  <span class="comment">// 声明‘字符栈’</span></span><br><span class="line">  <span class="keyword">let</span> stack = <span class="string">''</span></span><br><span class="line">  <span class="comment">// 当前数字代表的字符串遍历对象</span></span><br><span class="line">  <span class="keyword">let</span> curArr = []</span><br><span class="line">  <span class="keyword">let</span> getSubRes = <span class="function">(<span class="params">str, cur</span>) =&gt;</span> &#123; <span class="comment">// cur 代表当前下标</span></span><br><span class="line">    <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">if</span> (cur == str.length) &#123;</span><br><span class="line">      <span class="comment">// 栈长度大于1是一种结果</span></span><br><span class="line">      <span class="keyword">if</span> (stack.length &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        res.push(stack)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> number = str[cur] - <span class="string">'0'</span></span><br><span class="line">    curArr = arr[number].split(<span class="string">''</span>)</span><br><span class="line">    curArr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// ‘入栈’</span></span><br><span class="line">      stack += item</span><br><span class="line">      getSubRes(str, cur + <span class="number">1</span>)</span><br><span class="line">      <span class="comment">// ‘出栈’</span></span><br><span class="line">      stack = stack.substr(<span class="number">0</span>, stack.length - <span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  getSubRes(digits, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/回溯/电话号码的组合/">展开全文 >></a>
         </p>
       
 

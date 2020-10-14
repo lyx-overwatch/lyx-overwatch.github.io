@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
-  <title>Archives: 2020/10 | Blog Of LiuYunxiang</title>
+  <title>flutter 入门踩坑 | Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog Of LiuYunxiang">
-<meta property="og:url" content="http://lyx-overwatch.github.io/archives/2020/10/index.html">
+  <meta name="description" content="执行flutter run报错  这种情况可能是gradle压缩包版本的问题，更换下gradle的压缩包并更改调用路径 解决方法:">
+<meta name="keywords" content="others">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flutter 入门踩坑">
+<meta property="og:url" content="http://lyx-overwatch.github.io/2020/10/13/others/flutter/start1/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
+<meta property="og:description" content="执行flutter run报错  这种情况可能是gradle压缩包版本的问题，更换下gradle的压缩包并更改调用路径 解决方法:">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://lyx-overwatch.github.io/2020/10/13/others/flutter/start1/1.png">
+<meta property="og:image" content="http://lyx-overwatch.github.io/2020/10/13/others/flutter/start1/2.png">
+<meta property="og:updated_time" content="2020-10-14T01:32:15.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog Of LiuYunxiang">
+<meta name="twitter:title" content="flutter 入门踩坑">
+<meta name="twitter:description" content="执行flutter run报错  这种情况可能是gradle压缩包版本的问题，更换下gradle的压缩包并更改调用路径 解决方法:">
+<meta name="twitter:image" content="http://lyx-overwatch.github.io/2020/10/13/others/flutter/start1/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog Of LiuYunxiang" type="application/atom+xml">
   
@@ -168,36 +176,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-others/flutter/start1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/13/others/flutter/start1/" class="archive-article-date">
-  	<time datetime="2020-10-13T09:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/13/others/flutter/start1/">flutter 入门踩坑</a>
+    <h1 class="article-title" itemprop="name">
+      flutter 入门踩坑
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/10/13/others/flutter/start1/" class="archive-article-date">
+  	<time datetime="2020-10-13T09:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="执行flutter-run报错"><a href="#执行flutter-run报错" class="headerlink" title="执行flutter run报错"></a>执行flutter run报错</h4><img src="/2020/10/13/others/flutter/start1/1.png">
+
+<p>这种情况可能是gradle压缩包版本的问题，更换下gradle的压缩包并更改调用路径</p>
+<p><b>解决方法:</b></p>
+
+<a id="more"></a>
+
+<p>打开项目根目录 -> android/gradle/wrapper/gradle-wrapper.properties 文件</p>
+<p>修改distributionUrl的值，将gradle-xxx-all.zip替换成gradle-6.4.1-all.zip</p>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#Fri Jun 23 08:50:38 CEST 2017</span></span><br><span class="line">distributionBase=GRADLE_USER_HOME</span><br><span class="line">distributionPath=<span class="keyword">wrapper</span>/dists</span><br><span class="line">zipStoreBase=GRADLE_USER_HOME</span><br><span class="line">zipStorePath=<span class="keyword">wrapper</span>/dists</span><br><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle<span class="number">-6.4</span><span class="number">.1</span>-<span class="keyword">all</span>.zip</span><br></pre></td></tr></table></figure>
+
+<p>去<a href="https://services.gradle.org/distributions/gradle-6.4.1-all.zip" target="_blank" rel="noopener">官网</a> 下载 ‘gradle-6.4.1-all.zip’ 压缩包;不需要解压缩，直接放到如图所示目录中:</p>
+<img src="/2020/10/13/others/flutter/start1/2.png">
+
+<p>就是放到 ${user_home}/.gradle/wrapper/dists/gradle-6.4.1-all 里面的文件夹里</p>
+
+<p>重新执行flutter run,等待编译</p>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,57 +253,55 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/09/data-structure/环形链表/" class="archive-article-date">
-  	<time datetime="2020-10-09T03:10:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/09/data-structure/环形链表/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">环形链表</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/09/data-structure/环形链表/">环形链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -282,8 +324,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
