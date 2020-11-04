@@ -170,32 +170,29 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-data-structure/排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode/回溯/复原ip" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/23/data-structure/排序/">排序算法方法Js实现</a>
+      <a class="article-title" href="/2020/09/25/leetcode/回溯/复原ip/">复原ip</a>
     </h1>
   
 
         
-        <a href="/2020/09/23/data-structure/排序/" class="archive-article-date">
-  	<time datetime="2020-09-23T02:51:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
+        <a href="/2020/09/25/leetcode/回溯/复原ip/" class="archive-article-date">
+  	<time datetime="2020-09-25T06:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        <span class="keyword">var</span> temp=a[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">0</span>&amp;&amp;a[j]&gt;temp;j--)&#123;</span><br><span class="line">            a[j+<span class="number">1</span>]=a[j];</span><br><span class="line">        &#125;</span><br><span class="line">        a[j+<span class="number">1</span>]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; s</span></span><br><span class="line"><span class="comment"> * @return &#123;string[]&#125;</span></span><br><span class="line"><span class="comment">给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</span></span><br><span class="line"><span class="comment">有效的 IP 地址正好由四个整数（每个整数位于 0 到 255 之间组成），整数之间用 '.' 分隔。</span></span><br><span class="line"><span class="comment">示例:</span></span><br><span class="line"><span class="comment">输入: "25525511135"</span></span><br><span class="line"><span class="comment">输出: ["255.255.11.135", "255.255.111.35"]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> restoreIpAddresses = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s.length &gt; <span class="number">12</span> || s.length &lt; <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  <span class="keyword">let</span> dfs = <span class="function">(<span class="params">subRes, start</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 有四个满足条件的子串，并且遍历到底了作为一种结果</span></span><br><span class="line">    <span class="keyword">if</span> (subRes.length === <span class="number">4</span> &amp;&amp; start === s.length) &#123;</span><br><span class="line">      res.push(subRes.join(<span class="string">'.'</span>))</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 有四个满足条件的子串，并且未遍历，那么不满足条件退出</span></span><br><span class="line">    <span class="keyword">if</span> (subRes.length === <span class="number">4</span> &amp;&amp; start &lt; s.length) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> len = <span class="number">1</span>; len &lt;= <span class="number">3</span>; len++) &#123;</span><br><span class="line">      <span class="keyword">let</span> str = s.substring(start, start + len)</span><br><span class="line">      <span class="comment">// 长度大于1并以0开头，不满足</span></span><br><span class="line">      <span class="keyword">if</span> (len &gt; <span class="number">1</span> &amp;&amp; s[start] == <span class="number">0</span>) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 大于255，不满足</span></span><br><span class="line">      <span class="keyword">if</span> (len === <span class="number">3</span> &amp;&amp; str &gt; <span class="number">255</span>) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 超出边界，不满足</span></span><br><span class="line">      <span class="keyword">if</span> (s[start + len - <span class="number">1</span>] == <span class="literal">undefined</span>) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 将该子串作为结果保留</span></span><br><span class="line">      subRes.push(str)</span><br><span class="line">      <span class="comment">// 遍历剩下的子串</span></span><br><span class="line">      dfs(subRes, start + len)</span><br><span class="line">      <span class="comment">// 如果没有找到满足条件的四个子串，证明上一步保留的字符串无法构成ip字符，回撤，继续下个for循环</span></span><br><span class="line">      subRes.pop()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dfs([], <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left,right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res=[];</span><br><span class="line">    <span class="keyword">while</span>(left.length&gt;<span class="number">0</span>&amp;&amp;right.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(left[<span class="number">0</span>]&lt;=right[<span class="number">0</span>])&#123;</span><br><span class="line">            res.push(left.shift());</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.push(right.shift());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res.concat(left).concat(right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len=arr.length;</span><br><span class="line">    <span class="keyword">if</span>(len&lt;<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    <span class="keyword">let</span> mid=<span class="built_in">Math</span>.floor(len/<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">let</span> left=arr.slice(<span class="number">0</span>,mid);</span><br><span class="line">    <span class="keyword">let</span> right=arr.slice(mid);</span><br><span class="line">    <span class="keyword">return</span> merge(mergeSort(left),mergeSort(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/09/23/data-structure/排序/#more">more >></a>
-        
+
       
 
       
@@ -209,7 +206,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -218,7 +215,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/23/data-structure/排序/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/25/leetcode/回溯/复原ip/">展开全文 >></a>
         </p>
       
 
@@ -248,32 +245,27 @@
 
 
   
-    <article id="post-data-structure/深度优先遍历二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode/回溯/组数总和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/23/data-structure/深度优先遍历二叉树/">深度优先遍历二叉树Js实现</a>
+      <a class="article-title" href="/2020/09/25/leetcode/回溯/组数总和/">组数总和</a>
     </h1>
   
 
         
-        <a href="/2020/09/23/data-structure/深度优先遍历二叉树/" class="archive-article-date">
-  	<time datetime="2020-09-23T02:46:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
+        <a href="/2020/09/25/leetcode/回溯/组数总和/" class="archive-article-date">
+  	<time datetime="2020-09-25T06:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="递归方式"><a href="#递归方式" class="headerlink" title="递归方式"></a>递归方式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">preorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(root.val)</span><br><span class="line">        preorderTree(root.left)</span><br><span class="line">        preorderTree(root.right)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">preorderTree(root)</span><br><span class="line"></span><br><span class="line"><span class="comment">//中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!==<span class="literal">null</span>)&#123;</span><br><span class="line">        inorderTree(root.left)</span><br><span class="line">        <span class="built_in">console</span>.log(root.val)</span><br><span class="line">        inorderTree(root.right)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">inorderTree(root)</span><br><span class="line"></span><br><span class="line"><span class="comment">//后序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">postorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!==<span class="literal">null</span>)&#123;</span><br><span class="line">        postorderTree(root.left)</span><br><span class="line">        postorderTree(root.right)</span><br><span class="line">        <span class="built_in">console</span>.log(root.val)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">postorderTree(root)</span><br></pre></td></tr></table></figure>
-
-<h4 id="迭代方式"><a href="#迭代方式" class="headerlink" title="迭代方式"></a>迭代方式</h4>
-        
-          <a class="article-more-a" href="/2020/09/23/data-structure/深度优先遍历二叉树/#more">more >></a>
-        
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; candidates</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</span></span><br><span class="line"><span class="comment">candidates 中的数字可以无限制重复被选取。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">说明：</span></span><br><span class="line"><span class="comment">所有数字（包括 target）都是正整数。</span></span><br><span class="line"><span class="comment">解集不能包含重复的组合。 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">示例 1：</span></span><br><span class="line"><span class="comment">输入：candidates = [2,3,6,7], target = 7,</span></span><br><span class="line"><span class="comment">所求解集为：</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">  [7],</span></span><br><span class="line"><span class="comment">  [2,2,3]</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment"> 思路：我们可以先选择一个数字，用target减去他，然后再重复选择，当target等于0的时候说明我们找到了一种组合。当target小于0的时候，说明没有找到合适的，我们回到上一步再重新选择数字</span></span><br><span class="line"><span class="comment"> * @return &#123;number[][]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> combinationSum = <span class="function"><span class="keyword">function</span> (<span class="params">candidates, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  getRes(res, [], candidates, target, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> getRes = <span class="function">(<span class="params">res, cur, candidates, target, start</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (target === <span class="number">0</span>) &#123;</span><br><span class="line">    res.push(cur.slice())</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = start; i &lt; candidates.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (target &lt; candidates[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//选择当前节点，类似于从当前节点开始往下遍历</span></span><br><span class="line">    cur.push(candidates[i])</span><br><span class="line">    getRes(res, cur, candidates, target - candidates[i], i)</span><br><span class="line">    <span class="comment">//当回到当前分支的时候我们把该节点给移除，然后 选择同一层的下一个节点，沿着这个节点分支走下去</span></span><br><span class="line">    cur.pop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -287,7 +279,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -296,7 +288,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/23/data-structure/深度优先遍历二叉树/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/25/leetcode/回溯/组数总和/">展开全文 >></a>
         </p>
       
 
@@ -326,29 +318,27 @@
 
 
   
-    <article id="post-data-structure/广度优先遍历二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode/回溯/电话号码的组合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/23/data-structure/广度优先遍历二叉树/">广度优先遍历二叉树Js实现</a>
+      <a class="article-title" href="/2020/09/25/leetcode/回溯/电话号码的组合/">电话号码的组合</a>
     </h1>
   
 
         
-        <a href="/2020/09/23/data-structure/广度优先遍历二叉树/" class="archive-article-date">
-  	<time datetime="2020-09-23T02:41:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
+        <a href="/2020/09/25/leetcode/回溯/电话号码的组合/" class="archive-article-date">
+  	<time datetime="2020-09-25T06:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">treeNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.val=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.left=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.right=<span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> index=<span class="number">0</span>;</span><br><span class="line"><span class="comment">// 创建二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">creatTree</span>(<span class="params">root,arr</span>) </span>&#123;</span><br><span class="line">    root.val=arr[index++];</span><br><span class="line">    <span class="keyword">if</span>(root.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    root.left=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.left,arr);</span><br><span class="line">    <span class="keyword">if</span>(root.left.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        root.left=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    root.right=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.right,arr);</span><br><span class="line">    <span class="keyword">if</span>(root.right.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        root.right=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> root=<span class="keyword">new</span> treeNode();</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'D'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'E'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'C'</span>, <span class="string">'F'</span>,<span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'G'</span>, <span class="literal">null</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="keyword">let</span> tree=creatTree(root,arr);</span><br><span class="line"><span class="built_in">console</span>.log(tree);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 广度优先遍历二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">levelorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr=[];</span><br><span class="line">    arr.push(root);</span><br><span class="line">    <span class="keyword">let</span> pointer=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(pointer&lt;arr.length)&#123;</span><br><span class="line">        <span class="keyword">let</span> node=arr[pointer++];</span><br><span class="line">        <span class="built_in">console</span>.log(node.val);</span><br><span class="line">        <span class="keyword">if</span>(node.left!==<span class="literal">null</span>)&#123;</span><br><span class="line">            arr.push(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(node.right!==<span class="literal">null</span>)&#123;</span><br><span class="line">            arr.push(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">levelorderTree(tree);</span><br></pre></td></tr></table></figure>
-
-
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; digits</span></span><br><span class="line"><span class="comment"> * @return &#123;string[]&#125;</span></span><br><span class="line"><span class="comment"> * 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">给出数字到字母的映射（与电话按键相同）。注意 1 不对应任何字母。</span></span><br><span class="line"><span class="comment">示例:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输入："23"</span></span><br><span class="line"><span class="comment">输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> letterCombinations = <span class="function"><span class="keyword">function</span> (<span class="params">digits</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 声明一个数组，数组下标对应电话号码数字</span></span><br><span class="line">  <span class="keyword">let</span> arr = [<span class="string">''</span>, <span class="string">''</span>, <span class="string">'abc'</span>, <span class="string">'def'</span>, <span class="string">'ghi'</span>, <span class="string">'jkl'</span>, <span class="string">'mno'</span>, <span class="string">'pqrs'</span>, <span class="string">'tuv'</span>, <span class="string">'wxyz'</span>]</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  <span class="comment">// 声明‘字符栈’</span></span><br><span class="line">  <span class="keyword">let</span> stack = <span class="string">''</span></span><br><span class="line">  <span class="comment">// 当前数字代表的字符串遍历对象</span></span><br><span class="line">  <span class="keyword">let</span> curArr = []</span><br><span class="line">  <span class="keyword">let</span> getSubRes = <span class="function">(<span class="params">str, cur</span>) =&gt;</span> &#123; <span class="comment">// cur 代表当前下标</span></span><br><span class="line">    <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">if</span> (cur == str.length) &#123;</span><br><span class="line">      <span class="comment">// 栈长度大于1是一种结果</span></span><br><span class="line">      <span class="keyword">if</span> (stack.length &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        res.push(stack)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> number = str[cur] - <span class="string">'0'</span></span><br><span class="line">    curArr = arr[number].split(<span class="string">''</span>)</span><br><span class="line">    curArr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// ‘入栈’</span></span><br><span class="line">      stack += item</span><br><span class="line">      getSubRes(str, cur + <span class="number">1</span>)</span><br><span class="line">      <span class="comment">// ‘出栈’</span></span><br><span class="line">      stack = stack.substr(<span class="number">0</span>, stack.length - <span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  getSubRes(digits, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -362,7 +352,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -371,7 +361,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/23/data-structure/广度优先遍历二叉树/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/25/leetcode/回溯/电话号码的组合/">展开全文 >></a>
         </p>
       
 
@@ -401,32 +391,29 @@
 
 
   
-    <article id="post-js/基础/继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-data-structure/反转链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/js/基础/继承/">JS 继承</a>
+      <a class="article-title" href="/2020/09/23/data-structure/反转链表/">反转链表</a>
     </h1>
   
 
         
-        <a href="/2020/09/22/js/基础/继承/" class="archive-article-date">
-  	<time datetime="2020-09-22T08:11:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
+        <a href="/2020/09/23/data-structure/反转链表/" class="archive-article-date">
+  	<time datetime="2020-09-23T03:21:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    F.prototype=o</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F()</span><br><span class="line">&#125;<span class="comment">//Object.creat()与object方法作用相同</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListNode</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.val = x;</span><br><span class="line">  <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ReverseList</span>(<span class="params">pHead</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">var</span> listHead</span><br><span class="line">    <span class="keyword">var</span> pre = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">var</span> next = <span class="literal">null</span></span><br><span class="line">    listHead = pHead</span><br><span class="line">    <span class="keyword">while</span> (listHead) &#123;</span><br><span class="line"></span><br><span class="line">        next = listHead.next <span class="comment">//保存当前节点</span></span><br><span class="line">        listHead.next = pre <span class="comment">//当前节点从指向next变为指向pre</span></span><br><span class="line"></span><br><span class="line">        pre = listHead <span class="comment">//让pre，当前节点，next依次向后移动一个节点，继续下一次的指针反转</span></span><br><span class="line">        listHead = next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pre</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> ListNode(<span class="string">'a'</span>)</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> ListNode(<span class="string">'b'</span>)</span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> ListNode(<span class="string">'c'</span>)</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> ListNode(<span class="string">'d'</span>)</span><br><span class="line">a.next = b</span><br><span class="line">b.next = c</span><br><span class="line">c.next = d</span><br><span class="line"><span class="built_in">console</span>.log(ReverseList(a))</span><br></pre></td></tr></table></figure>
 
-<h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.property=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">this</span>.color = [<span class="string">'red'</span>]</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.property;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.subproperty=<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype=<span class="keyword">new</span> SuperType();</span><br><span class="line"></span><br><span class="line">SubType.prototype.getSubValue=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/09/22/js/基础/继承/#more">more >></a>
-        
+
       
 
       
@@ -440,7 +427,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -449,7 +436,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/22/js/基础/继承/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/23/data-structure/反转链表/">展开全文 >></a>
         </p>
       
 

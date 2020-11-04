@@ -170,27 +170,46 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-leetcode/dfs/钥匙和房间" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-css/css-margin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/dfs/钥匙和房间/">钥匙和房间</a>
+      <a class="article-title" href="/2020/09/26/css/css-margin/">CSS margin</a>
     </h1>
   
 
         
-        <a href="/2020/09/25/leetcode/dfs/钥匙和房间/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:56:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+        <a href="/2020/09/26/css/css-margin/" class="archive-article-date">
+  	<time datetime="2020-09-26T07:16:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[][]&#125; rooms</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">有 N 个房间，开始时你位于 0 号房间。每个房间有不同的号码：0，1，2，...，N-1，并且房间里可能有一些钥匙能使你进入下一个房间。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">在形式上，对于每个房间 i 都有一个钥匙列表 rooms[i]，每个钥匙 rooms[i][j] 由 [0,1，...，N-1] 中的一个整数表示，其中 N = rooms.length。 钥匙 rooms[i][j] = v 可以打开编号为 v 的房间。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">最初，除 0 号房间外的其余所有房间都被锁住。</span></span><br><span class="line"><span class="comment">你可以自由地在房间之间来回走动。</span></span><br><span class="line"><span class="comment">如果能进入每个房间返回 true，否则返回 false。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> canVisitAllRooms = <span class="function"><span class="keyword">function</span> (<span class="params">rooms</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (rooms.length &lt;= <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">let</span> len = rooms.length</span><br><span class="line">  <span class="comment">// 记录当前房间是否被访问过</span></span><br><span class="line">  <span class="keyword">let</span> visitedArr = <span class="keyword">new</span> <span class="built_in">Array</span>(len)</span><br><span class="line">  <span class="keyword">let</span> res = <span class="number">0</span> </span><br><span class="line">  <span class="keyword">let</span> getTarget = <span class="function">(<span class="params">curRooms, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 当前被访问了</span></span><br><span class="line">    visitedArr[index] = <span class="literal">true</span></span><br><span class="line">    res ++</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; curRooms[index].length; i++) &#123;</span><br><span class="line">      <span class="comment">// 没有被访问就继续深度搜索</span></span><br><span class="line">      <span class="keyword">if</span> (!visitedArr[curRooms[index][i]]) &#123;</span><br><span class="line">        getTarget(curRooms, curRooms[index][i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  getTarget(rooms, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> res == len</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(canVisitAllRooms([[<span class="number">2</span>], [], [<span class="number">1</span>]]))</span><br></pre></td></tr></table></figure>
+        <h4 id="百分比margin"><a href="#百分比margin" class="headerlink" title="百分比margin"></a>百分比margin</h4><p>普通元素百分比margin都是相对于容器宽度计算的</p>
+
+<p>绝对定位元素的百分比margin是相对第一个定位祖先元素（relative、absolute，fixed）的宽度计算的</p>
+
+<h4 id="margin重叠"><a href="#margin重叠" class="headerlink" title="margin重叠"></a>margin重叠</h4><p>margin重叠的3种情境</p>
+
+<ol>
+<li>相邻的兄弟元素</li>
+<li>父级和第一个/最后一个子元素</li>
+<li>空的block元素</li>
+</ol>
+<p>margin重叠通常特性</p>
+
+<ol>
+<li>block水平元素，不包括float和absolute元素</li>
+<li>不考虑writing-mode，只发生在垂直方向margin-top，margin-bottom</li>
+</ol>
+        
+          <a class="article-more-a" href="/2020/09/26/css/css-margin/#more">more >></a>
+        
       
 
       
@@ -204,7 +223,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
         		</li>
       		
 		</ul>
@@ -213,7 +232,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/dfs/钥匙和房间/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/26/css/css-margin/">展开全文 >></a>
         </p>
       
 
@@ -243,27 +262,39 @@
 
 
   
-    <article id="post-leetcode/dfs/被围绕的区域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-es6/Array-reduce" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/dfs/被围绕的区域/">被围绕的区域</a>
+      <a class="article-title" href="/2020/09/23/es6/Array-reduce/">Array.reduce用法</a>
     </h1>
   
 
         
-        <a href="/2020/09/25/leetcode/dfs/被围绕的区域/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:49:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+        <a href="/2020/09/23/es6/Array-reduce/" class="archive-article-date">
+  	<time datetime="2020-09-23T03:29:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;character[][]&#125; board</span></span><br><span class="line"><span class="comment"> * @return &#123;void&#125; Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">给定一个二维的矩阵，包含 'X' 和 'O'（字母 O）。</span></span><br><span class="line"><span class="comment">找到所有被 'X' 围绕的区域，并将这些区域里所有的 'O' 用 'X' 填充。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">示例:</span></span><br><span class="line"><span class="comment">X X X X</span></span><br><span class="line"><span class="comment">X O O X</span></span><br><span class="line"><span class="comment">X X O X</span></span><br><span class="line"><span class="comment">X O X X</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">运行你的函数后，矩阵变为：</span></span><br><span class="line"><span class="comment">X X X X</span></span><br><span class="line"><span class="comment">X X X X</span></span><br><span class="line"><span class="comment">X X X X</span></span><br><span class="line"><span class="comment">X O X X</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> solve = <span class="function"><span class="keyword">function</span>(<span class="params">board</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dfs = <span class="function">(<span class="params">arr, x, y</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 超出边界，或者已经填充了'X', 'Y'的不能填充</span></span><br><span class="line">      <span class="keyword">if</span> (x &gt;= arr.length ||</span><br><span class="line">          y &gt;= arr[<span class="number">0</span>].length ||</span><br><span class="line">          x &lt; <span class="number">0</span> || </span><br><span class="line">          y &lt; <span class="number">0</span> || </span><br><span class="line">          arr[x][y] == <span class="string">'X'</span>||</span><br><span class="line">          arr[x][y] == <span class="string">'Y'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 与边界上的'O'直接相连的'O'替换为'Y'</span></span><br><span class="line">      arr[x][y] = <span class="string">'Y'</span></span><br><span class="line"></span><br><span class="line">      dfs(arr, x + <span class="number">1</span>, y)</span><br><span class="line">      dfs(arr, x - <span class="number">1</span>, y)</span><br><span class="line">      dfs(arr, x, y + <span class="number">1</span>)</span><br><span class="line">      dfs(arr, x, y - <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; board.length; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;board[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((i == <span class="number">0</span> || </span><br><span class="line">              j == <span class="number">0</span> ||</span><br><span class="line">                i == board.length <span class="number">-1</span> ||</span><br><span class="line">                  j == board[<span class="number">0</span>].length - <span class="number">1</span>) &amp;&amp; </span><br><span class="line">                    board[i][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">                      <span class="comment">// 对于处于边界上的'O',找到与它直接相连的'O',符合条件的都不能被填充</span></span><br><span class="line">                      dfs(board, i, j)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 填充</span></span><br><span class="line">    board = board.map(<span class="function"><span class="params">items</span> =&gt;</span> items.map(<span class="function"><span class="params">item</span> =&gt;</span>&#123;</span><br><span class="line">      <span class="comment">// 不在边界上的'O'且不与边界上的'O'直接相连</span></span><br><span class="line">      <span class="keyword">if</span> (item == <span class="string">'O'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> item = <span class="string">'X'</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 在边界上的'O'或与边界上的'O'直接相连</span></span><br><span class="line">      <span class="keyword">if</span> (item == <span class="string">'Y'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> item = <span class="string">'O'</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> item</span><br><span class="line">    &#125;))</span><br><span class="line">    <span class="keyword">return</span> board</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> board = [[<span class="string">"X"</span>, <span class="string">"X"</span>, <span class="string">"X"</span>, <span class="string">"X"</span>], [<span class="string">"X"</span>, <span class="string">"O"</span>, <span class="string">"O"</span>, <span class="string">"X"</span>], [<span class="string">"X"</span>, <span class="string">"X"</span>, <span class="string">"O"</span>, <span class="string">"X"</span>], [<span class="string">"X"</span>, <span class="string">"O"</span>, <span class="string">"X"</span>, <span class="string">"X"</span>]]</span><br><span class="line"><span class="built_in">console</span>.log(solve(board))</span><br></pre></td></tr></table></figure>
+        <h4 id="reduce作用"><a href="#reduce作用" class="headerlink" title="reduce作用"></a>reduce作用</h4><p>reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，<b>将其结果汇总为单个返回值。</b></p>
+
+<p>reduce为数组中的每一个元素依次执行callback函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：</p>
+
+<ol>
+<li>accumulator 累计器,累计回调的返回值; 它是上一次调用回调时返回的累积值</li>
+<li>currentValue 数组中正在处理的元素。</li>
+<li>currentIndex 数组中正在处理的当前元素的索引。</li>
+<li>array 调用reduce()的数组</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扁平化数组</span></span><br><span class="line"><span class="keyword">let</span> getOneDimensionalArray = <span class="function"><span class="params">arr</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(cur)</span><br><span class="line">      ? next.every(<span class="function"><span class="params">item</span> =&gt;</span> !<span class="built_in">Array</span>.isArray(item))</span><br><span class="line">        ? pre.concat(cur)</span><br><span class="line">        : pre.concat(getOneDimensionalArray(cur))</span><br><span class="line">      : pre.concat(cur)</span><br><span class="line">  &#125;, [])</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getOneDimensionalArray([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">4</span>, [<span class="number">3</span>, [<span class="number">2</span>]]]], [<span class="number">2</span>], [<span class="number">3</span>]]))</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -277,7 +308,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/es6//" class="article-tag-list-link color4">es6</a>
         		</li>
       		
 		</ul>
@@ -286,7 +317,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/dfs/被围绕的区域/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/23/es6/Array-reduce/">展开全文 >></a>
         </p>
       
 
@@ -316,29 +347,27 @@
 
 
   
-    <article id="post-leetcode/字符串/回文子串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-leetcode/dfs/从中序与后序遍历序列构造二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/字符串/回文子串/">回文子串</a>
+      <a class="article-title" href="/2020/09/25/leetcode/dfs/从中序与后序遍历序列构造二叉树/">从中序与后序遍历序列构造二叉树</a>
     </h1>
   
 
         
-        <a href="/2020/09/25/leetcode/字符串/回文子串/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+        <a href="/2020/09/25/leetcode/dfs/从中序与后序遍历序列构造二叉树/" class="archive-article-date">
+  	<time datetime="2020-09-25T12:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; s</span></span><br><span class="line"><span class="comment">给定一个字符串，你的任务是计算这个字符串中有多少个回文子串。</span></span><br><span class="line"><span class="comment">具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</span></span><br><span class="line"><span class="comment">示例：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输入："aaa"</span></span><br><span class="line"><span class="comment">输出：6</span></span><br><span class="line"><span class="comment">解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa"</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> countSubstrings = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> len = s.length</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> left = i </span><br><span class="line">        <span class="keyword">let</span> right = i </span><br><span class="line">        <span class="keyword">let</span> curLeft = left</span><br><span class="line">        <span class="keyword">let</span> curRight = right</span><br><span class="line">        <span class="comment">// 当前节点向左右拓展，判断是否为回文串</span></span><br><span class="line">        <span class="keyword">while</span> (curLeft &gt;= <span class="number">0</span> &amp;&amp; curRight &lt;= len <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[curLeft] == s[curRight]) &#123;</span><br><span class="line">                res ++</span><br><span class="line">                curLeft --</span><br><span class="line">                curRight ++</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当前节点与下个节点相同，两个节点同时向左右拓展，判断是否为回文串</span></span><br><span class="line">        <span class="keyword">if</span> (s[i + <span class="number">1</span>] &amp;&amp; s[i] == s[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            right = i + <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; right &lt;= len - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s[left] == s[right]) &#123;</span><br><span class="line">                    res ++</span><br><span class="line">                    left --</span><br><span class="line">                    right ++</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment">根据一棵树的中序遍历与后序遍历构造二叉树。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">注意:</span></span><br><span class="line"><span class="comment">你可以假设树中没有重复的元素。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">例如，给出</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">中序遍历 inorder = [9,3,15,20,7]</span></span><br><span class="line"><span class="comment">后序遍历 postorder = [9,15,7,20,3]</span></span><br><span class="line"><span class="comment">返回如下的二叉树：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    3</span></span><br><span class="line"><span class="comment">   / \</span></span><br><span class="line"><span class="comment">  9  20</span></span><br><span class="line"><span class="comment">    /  \</span></span><br><span class="line"><span class="comment">   15   7</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; inorder</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; postorder</span></span><br><span class="line"><span class="comment"> * @return &#123;TreeNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> buildTree = <span class="function"><span class="keyword">function</span> (<span class="params">inorder, postorder</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!inorder.length) <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  <span class="comment">// 后序遍历的最后一个值为根节点的值</span></span><br><span class="line">  <span class="keyword">let</span> rootVal = postorder.pop()</span><br><span class="line">  <span class="keyword">let</span> root = <span class="keyword">new</span> TreeNode(rootVal)</span><br><span class="line">  <span class="keyword">let</span> rootIndex = inorder.indexOf(rootVal)</span><br><span class="line">  <span class="comment">// 左子树的前序遍历数组</span></span><br><span class="line">  <span class="keyword">let</span> leftInorder = inorder.slice(<span class="number">0</span>, rootIndex)</span><br><span class="line">  <span class="comment">// 右子树的前序遍历数组</span></span><br><span class="line">  <span class="keyword">let</span> rightInorder = inorder.slice(rootIndex + <span class="number">1</span>)</span><br><span class="line">  <span class="comment">// 先遍历根节点的右子树，等到右子树全部遍历完，剩下的postorder就是左子树的后序遍历结果</span></span><br><span class="line">  root.right = buildTree(rightInorder, postorder)</span><br><span class="line">  <span class="comment">// 必须先遍历右子树再遍历左子树</span></span><br><span class="line">  root.left = buildTree(leftInorder, postorder)</span><br><span class="line">  <span class="keyword">return</span> root</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -361,7 +390,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/字符串/回文子串/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/25/leetcode/dfs/从中序与后序遍历序列构造二叉树/">展开全文 >></a>
         </p>
       
 
@@ -391,27 +420,34 @@
 
 
   
-    <article id="post-leetcode/字符串/字符串相乘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-react/start/start1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/leetcode/字符串/字符串相乘/">字符串相乘</a>
+      <a class="article-title" href="/2020/09/22/react/start/start1/">react基础</a>
     </h1>
   
 
         
-        <a href="/2020/09/25/leetcode/字符串/字符串相乘/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:34:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+        <a href="/2020/09/22/react/start/start1/" class="archive-article-date">
+  	<time datetime="2020-09-22T03:56:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; num1</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; num2</span></span><br><span class="line"><span class="comment"> * @return &#123;string&#125;</span></span><br><span class="line"><span class="comment">给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">示例 1:</span></span><br><span class="line"><span class="comment">输入: num1 = "2", num2 = "3"</span></span><br><span class="line"><span class="comment">输出: "6"</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">示例 2:</span></span><br><span class="line"><span class="comment">输入: num1 = "123", num2 = "456"</span></span><br><span class="line"><span class="comment">输出: "56088"</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">说明：</span></span><br><span class="line"><span class="comment">num1 和 num2 的长度小于110。</span></span><br><span class="line"><span class="comment">num1 和 num2 只包含数字 0-9。</span></span><br><span class="line"><span class="comment">num1 和 num2 均不以零开头，除非是数字 0 本身。</span></span><br><span class="line"><span class="comment">不能使用任何标准库的大数类型（比如 BigInteger）或直接将输入转换为整数来处理。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">思路：</span></span><br><span class="line"><span class="comment">乘数的每一位和被乘数做字符串乘法，从低到高，将所有结果相加就是两字符串乘法的结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> multiply = <span class="function"><span class="keyword">function</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (num1 == <span class="string">'0'</span> || num2 == <span class="string">'0'</span>) <span class="keyword">return</span> <span class="string">'0'</span></span><br><span class="line">  <span class="keyword">let</span> len = num2.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> res = <span class="string">'0'</span></span><br><span class="line">  <span class="keyword">while</span> (len &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> cur = <span class="string">''</span></span><br><span class="line">    <span class="comment">// 补零</span></span><br><span class="line">    <span class="keyword">let</span> zeroNum = num2.length - <span class="number">1</span> - len</span><br><span class="line">    <span class="keyword">while</span> (zeroNum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      cur += <span class="string">'0'</span></span><br><span class="line">      zeroNum--</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> multiplier = num2[len] - <span class="string">'0'</span></span><br><span class="line">    <span class="comment">// 做乘法的进位</span></span><br><span class="line">    <span class="keyword">let</span> carry = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> index = num1.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (index &gt;= <span class="number">0</span> || carry != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> x = index &gt;= <span class="number">0</span> ? num1[index] - <span class="string">'0'</span> : <span class="number">0</span></span><br><span class="line">      <span class="keyword">let</span> result = x * multiplier + carry</span><br><span class="line">      cur += result % <span class="number">10</span></span><br><span class="line">      carry = <span class="built_in">Math</span>.floor(result / <span class="number">10</span>)</span><br><span class="line">      index--</span><br><span class="line">    &#125;</span><br><span class="line">    res = addStrings(res, cur.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>))</span><br><span class="line">    len--</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res.toString()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 字符串相加</span></span><br><span class="line"><span class="keyword">var</span> addStrings = <span class="function"><span class="keyword">function</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 进位</span></span><br><span class="line">  <span class="keyword">let</span> carry = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> i = num1.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> j = num2.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> res = <span class="string">''</span></span><br><span class="line">  <span class="keyword">while</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || carry != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> x = i &gt;= <span class="number">0</span> ? num1[i] - <span class="string">'0'</span> : <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> y = j &gt;= <span class="number">0</span> ? num2[j] - <span class="string">'0'</span> : <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> cur = x + y + carry</span><br><span class="line">    res += (cur % <span class="number">10</span>)</span><br><span class="line">    carry = <span class="built_in">Math</span>.floor(cur / <span class="number">10</span>)</span><br><span class="line">    i--</span><br><span class="line">    j--</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="初识react"><a href="#初识react" class="headerlink" title="初识react"></a>初识react</h4><p>使用create-react-app创建一个简单的应用:</p>
+
+<img src="/2020/09/22/react/start/start1/1.png">
+
+<p>这是一个简单的井子棋游戏，每个棋格都是一个按钮，将一个棋格作为一个最简单的组件进行封装。</p>
+        
+          <a class="article-more-a" href="/2020/09/22/react/start/start1/#more">more >></a>
+        
       
 
       
@@ -425,7 +461,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
         		</li>
       		
 		</ul>
@@ -434,7 +470,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/leetcode/字符串/字符串相乘/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/22/react/start/start1/">展开全文 >></a>
         </p>
       
 
