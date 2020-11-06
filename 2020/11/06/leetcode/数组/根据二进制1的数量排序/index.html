@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
-  <title>Category: leetcode | Blog Of LiuYunxiang</title>
+  <title>根据数字的二进制的1的数量排序原数组 | Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog Of LiuYunxiang">
-<meta property="og:url" content="http://lyx-overwatch.github.io/categories/leetcode/page/3/index.html">
+  <meta name="description" content="位运算 + 自定义sort函数解决问题1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * @param &amp;#123;number[]&amp;#125; arr * @return &amp;#123;number[]&amp;#125; * 给你一个整数数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="根据数字的二进制的1的数量排序原数组">
+<meta property="og:url" content="http://lyx-overwatch.github.io/2020/11/06/leetcode/数组/根据二进制1的数量排序/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
+<meta property="og:description" content="位运算 + 自定义sort函数解决问题1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * @param &amp;#123;number[]&amp;#125; arr * @return &amp;#123;number[]&amp;#125; * 给你一个整数数">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-06T07:13:14.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog Of LiuYunxiang">
+<meta name="twitter:title" content="根据数字的二进制的1的数量排序原数组">
+<meta name="twitter:description" content="位运算 + 自定义sort函数解决问题1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * @param &amp;#123;number[]&amp;#125; arr * @return &amp;#123;number[]&amp;#125; * 给你一个整数数">
   
     <link rel="alternative" href="/atom.xml" title="Blog Of LiuYunxiang" type="application/atom+xml">
   
@@ -168,37 +172,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-leetcode/数组/根据二进制1的数量排序" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      根据数字的二进制的1的数量排序原数组
+    </h1>
+  
+
+        
+        <a href="/2020/11/06/leetcode/数组/根据二进制1的数量排序/" class="archive-article-date">
+  	<time datetime="2020-11-06T07:10:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-06</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="位运算-自定义sort函数解决问题"><a href="#位运算-自定义sort函数解决问题" class="headerlink" title="位运算 + 自定义sort函数解决问题"></a>位运算 + 自定义sort函数解决问题</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; arr</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> * 给你一个整数数组 arr 。请你将数组中的元素按照其二进制表示中数字 1 的数目升序排序。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">如果存在多个数字二进制中 1 的数目相同，则必须将它们按照数值大小升序排列。</span></span><br><span class="line"><span class="comment">请你返回排序后的数组。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">示例：</span></span><br><span class="line"><span class="comment">输入：arr = [0,1,2,3,4,5,6,7,8]</span></span><br><span class="line"><span class="comment">输出：[0,1,2,4,8,3,5,6,7]</span></span><br><span class="line"><span class="comment">解释：[0] 是唯一一个有 0 个 1 的数。</span></span><br><span class="line"><span class="comment">[1,2,4,8] 都有 1 个 1 。</span></span><br><span class="line"><span class="comment">[3,5,6] 有 2 个 1 。</span></span><br><span class="line"><span class="comment">[7] 有 3 个 1 。</span></span><br><span class="line"><span class="comment">按照 1 的个数排序得到的结果数组为 [0,1,2,4,8,3,5,6,7]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> sortByBits = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 定义获取数字二进制的1的个数</span></span><br><span class="line">  <span class="keyword">let</span> getNumber = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (n) &#123;</span><br><span class="line">      <span class="comment">// 与1进行按位与运算，最后一位为1的话，结果是1（1的二进制可以表示为000...00001）,表明有一个1</span></span><br><span class="line">      <span class="keyword">if</span> (n &amp; <span class="number">1</span> == <span class="number">1</span>) &#123;</span><br><span class="line">        count ++</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 向右移一位</span></span><br><span class="line">      n = n &gt;&gt; <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">    obj.origin = item</span><br><span class="line">    obj.number = getNumber(item)</span><br><span class="line">    res.push(obj)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 自定义sort函数，根据自己设定的规则排序，先根据二进制1的个数排序，1的数量相同再根据本来的大小排</span></span><br><span class="line">  res.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (a.number &gt; b.number) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a.number == b.number) &#123;</span><br><span class="line">      <span class="keyword">return</span> a.origin &gt; b.origin ? <span class="number">1</span> : a.origin &lt; b.origin ? <span class="number">-1</span> : <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">let</span> ori = []</span><br><span class="line">  res.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">   ori.push(item.origin)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> ori</span><br><span class="line">&#125;;</span><br><span class="line">sortByBits([<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>]) <span class="comment">// [2,  3,  5, 17, 7, 11, 13, 19]</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/数组/下一个排列/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/数组/下一个排列/">下一个排列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -211,134 +234,52 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/回溯/复原ip/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/05/react/start/reactTips/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React 开发技巧</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/回溯/复原ip/">复原ip</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/回溯/组数总和/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/回溯/组数总和/">组数总和</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/回溯/电话号码的组合/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/回溯/电话号码的组合/">电话号码的组合</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/leetcode/page/2/">&laquo; Prev</a><a class="page-number" href="/categories/leetcode/">1</a><a class="page-number" href="/categories/leetcode/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/leetcode/page/4/">4</a><a class="extend next" rel="next" href="/categories/leetcode/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -362,10 +303,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
-  <title>Category: leetcode | Blog Of LiuYunxiang</title>
+  <title>Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Blog Of LiuYunxiang">
-<meta property="og:url" content="http://lyx-overwatch.github.io/categories/leetcode/page/3/index.html">
+<meta property="og:url" content="http://lyx-overwatch.github.io/page/12/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -170,174 +170,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-data-structure/creatTree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/22/data-structure/creatTree/">创建二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/22/data-structure/creatTree/" class="archive-article-date">
+  	<time datetime="2019-09-22T15:02:52.329Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+</a>
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="根据一个数组（二叉树的中序遍历），创建一颗二叉树"><a href="#根据一个数组（二叉树的中序遍历），创建一颗二叉树" class="headerlink" title="根据一个数组（二叉树的中序遍历），创建一颗二叉树"></a>根据一个数组（二叉树的中序遍历），创建一颗二叉树</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">treeNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.left=<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.right=<span class="literal">null</span>;</span><br><span class="line">    &#125; <span class="comment">// 定义树节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> index=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">creatTree</span>(<span class="params">root,arr</span>) </span>&#123;</span><br><span class="line">    root.val=arr[index++];</span><br><span class="line">    <span class="keyword">if</span>(root.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    root.left=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.left,arr); <span class="comment">// 递归创建左子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.left.val==<span class="literal">null</span>)&#123;  </span><br><span class="line">        root.left=<span class="literal">null</span>;  <span class="comment">// 当前结点为空值，则没有左子结点</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    root.right=<span class="keyword">new</span> treeNode();</span><br><span class="line">    creatTree(root.right,arr); <span class="comment">// 递归创建右子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.right.val==<span class="literal">null</span>)&#123;</span><br><span class="line">        root.right=<span class="literal">null</span>; <span class="comment">// 当前结点为空值，则没有右子结点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> root=<span class="keyword">new</span> treeNode();</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'D'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'E'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'C'</span>, <span class="string">'F'</span>,<span class="literal">null</span>, <span class="literal">null</span>, <span class="string">'G'</span>, <span class="literal">null</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="built_in">console</span>.log(creatTree(root,arr));</span><br></pre></td></tr></table></figure>
+
+<p>最后输出这样一个树结构：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">treeNode &#123;<span class="attr">val</span>: <span class="string">"A"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br><span class="line">-left: treeNode &#123;<span class="attr">val</span>: <span class="string">"B"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br><span class="line">-right: treeNode &#123;<span class="attr">val</span>: <span class="string">"C"</span>, <span class="attr">left</span>: treeNode, <span class="attr">right</span>: treeNode&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/数组/下一个排列/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/数组/下一个排列/">下一个排列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/22/data-structure/creatTree/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/回溯/复原ip/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/回溯/复原ip/">复原ip</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/回溯/组数总和/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/回溯/组数总和/">组数总和</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/回溯/电话号码的组合/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/回溯/电话号码的组合/">电话号码的组合</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
-
-    
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/leetcode/page/2/">&laquo; Prev</a><a class="page-number" href="/categories/leetcode/">1</a><a class="page-number" href="/categories/leetcode/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/leetcode/page/4/">4</a><a class="extend next" rel="next" href="/categories/leetcode/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span>
     </nav>
   
 
@@ -361,11 +274,11 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
