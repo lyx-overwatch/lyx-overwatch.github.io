@@ -170,6 +170,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-react/start/ref穿透" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/25/react/start/ref穿透/">ref转发以及useImperativeHandle hook函数的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/25/react/start/ref穿透/" class="archive-article-date">
+  	<time datetime="2020-11-25T06:40:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ref转发的概念"><a href="#ref转发的概念" class="headerlink" title="ref转发的概念"></a>ref转发的概念</h3><p>ref 转发（也叫透传），是使用 React.forwardRef 方法实现的，该方法返回一个组件，参数为函数（props callback），函数的第一个参数为父组件传递的 props，第二给参数为父组件传递的 ref，其目的就是希望可以在封装组件时，外层组件可以通过 ref 直接控制内层组件或元素的行为。</p>
+
+<h4 id="不使用useImperativeHandle进行ref转发的例子"><a href="#不使用useImperativeHandle进行ref转发的例子" class="headerlink" title="不使用useImperativeHandle进行ref转发的例子"></a>不使用useImperativeHandle进行ref转发的例子</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useCallback, useRef &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> FancyButton = React.forwardRef(<span class="function">(<span class="params">props, pref</span>) =&gt;</span> (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;input ref=&#123;pref&#125; type=<span class="string">'text'</span> /&gt;</span><br><span class="line">    &lt;button&gt;&#123;props.children&#125;&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">))</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> ref = useRef()</span><br><span class="line">  <span class="keyword">const</span> handleClick = useCallback(<span class="function"><span class="params">()</span> =&gt;</span> ref.current.focus(),[ref])</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  useCallback的使用场景：</span></span><br><span class="line"><span class="comment">  有一个父组件，其中包含子组件，子组件接收一个函数作为props；通常而言，如果父组件更新了，子组件也会执行更新；但是大多数场景下，更新是没有必要的，我们可以借助useCallback来返回函数，然后把这个函数作为props传递给子组件；这样，子组件就能避免不必要的更新。</span></span><br><span class="line"><span class="comment">  useCallback 返回的是缓存的函数，当依赖的ref发生变化时，就会计算新的函数返回，这样就能减少不必要的渲染.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;FancyButton ref=&#123;ref&#125;&gt;Click Me&lt;<span class="regexp">/FancyButton&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;handleClick&#125;&gt;获取焦点&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个例子实际上是直接转发ref，直接转发 ref 是将 React.forwardRef 中函数上的 ref 参数直接应用在了返回元素的 ref 属性上，其实父、子组件引用的是同一个 ref 的 current 对象，官方并不推荐这样</p>
+
+<h4 id="使用useImperativeHandle进行ref转发"><a href="#使用useImperativeHandle进行ref转发" class="headerlink" title="使用useImperativeHandle进行ref转发"></a>使用useImperativeHandle进行ref转发</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useImperativeHandle, useRef &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> FancyInput = React.forwardRef(<span class="function">(<span class="params">props, pref</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> ref = useRef()</span><br><span class="line">  <span class="comment">// 第一个参数是目标元素的ref引用</span></span><br><span class="line">  useImperativeHandle(pref, ()=&gt; (&#123;</span><br><span class="line">    <span class="comment">// 暴露给父组件的方法</span></span><br><span class="line">    focus: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      ref.current.focus()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;))</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">      &lt;input ref=&#123;ref&#125; type=<span class="string">"text"</span>/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fancyInputRef = useRef()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;FancyInput ref=&#123;fancyInputRef&#125; /&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; fancyInputRef.current.focus()&#125;&gt;</span><br><span class="line">        父组件调用子组件的 focus</span><br><span class="line">      &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 useImperativeHandle 后，可以让父、子组件分别有自己的 ref，通过 React.forwardRef 将父组件的 ref 透传过来，通过 useImperativeHandle 方法来自定义开放给父组件的 current。<b>useImperativeHandle必须和React.forwardRef配合使用</b></p>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/25/react/start/ref穿透/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode/数组/根据二进制1的数量排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -398,96 +479,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/04/react/start/mobxVSredux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react/start/redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/react/start/redux/">Redux基础</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/26/react/start/redux/" class="archive-article-date">
-  	<time datetime="2020-09-26T08:57:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="考虑使用Redux的情景"><a href="#考虑使用Redux的情景" class="headerlink" title="考虑使用Redux的情景"></a>考虑使用Redux的情景</h4><ol>
-<li>某个组件的状态，需要共享</li>
-<li>某个状态需要在任何地方都可以拿到</li>
-<li>一个组件需要改变全局状态</li>
-<li>一个组件需要改变另一个组件的状态</li>
-</ol>
-<p>Redux 的设计思想</p>
-
-<ol>
-<li>Web应用是一个状态机，视图与状态是一一对应的。</li>
-<li>所有的状态，保存在一个对象里面。</li>
-</ol>
-<h4 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h4><p>Redux 提供<b>createStore</b>这个函数，用来生成 Store</p>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer);</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/09/26/react/start/redux/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/26/react/start/redux/">展开全文 >></a>
         </p>
       
 

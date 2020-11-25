@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://lyx-overwatch.github.io">
-  <title>Archives | Blog Of LiuYunxiang</title>
+  <title>ref转发以及useImperativeHandle hook函数的使用 | Blog Of LiuYunxiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog Of LiuYunxiang">
-<meta property="og:url" content="http://lyx-overwatch.github.io/archives/page/4/index.html">
+  <meta name="description" content="ref转发的概念ref 转发（也叫透传），是使用 React.forwardRef 方法实现的，该方法返回一个组件，参数为函数（props callback），函数的第一个参数为父组件传递的 props，第二给参数为父组件传递的 ref，其目的就是希望可以在封装组件时，外层组件可以通过 ref 直接控制内层组件或元素的行为。  不使用useImperativeHandle进行ref转发的例子123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ref转发以及useImperativeHandle hook函数的使用">
+<meta property="og:url" content="http://lyx-overwatch.github.io/2020/11/25/react/start/ref穿透/index.html">
 <meta property="og:site_name" content="Blog Of LiuYunxiang">
+<meta property="og:description" content="ref转发的概念ref 转发（也叫透传），是使用 React.forwardRef 方法实现的，该方法返回一个组件，参数为函数（props callback），函数的第一个参数为父组件传递的 props，第二给参数为父组件传递的 ref，其目的就是希望可以在封装组件时，外层组件可以通过 ref 直接控制内层组件或元素的行为。  不使用useImperativeHandle进行ref转发的例子123">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-25T06:51:44.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog Of LiuYunxiang">
+<meta name="twitter:title" content="ref转发以及useImperativeHandle hook函数的使用">
+<meta name="twitter:description" content="ref转发的概念ref 转发（也叫透传），是使用 React.forwardRef 方法实现的，该方法返回一个组件，参数为函数（props callback），函数的第一个参数为父组件传递的 props，第二给参数为父组件传递的 ref，其目的就是希望可以在封装组件时，外层组件可以通过 ref 直接控制内层组件或元素的行为。  不使用useImperativeHandle进行ref转发的例子123">
   
     <link rel="alternative" href="/atom.xml" title="Blog Of LiuYunxiang" type="application/atom+xml">
   
@@ -168,177 +172,122 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-react/start/ref穿透" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ref转发以及useImperativeHandle hook函数的使用
+    </h1>
+  
+
+        
+        <a href="/2020/11/25/react/start/ref穿透/" class="archive-article-date">
+  	<time datetime="2020-11-25T06:40:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-25</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ref转发的概念"><a href="#ref转发的概念" class="headerlink" title="ref转发的概念"></a>ref转发的概念</h3><p>ref 转发（也叫透传），是使用 React.forwardRef 方法实现的，该方法返回一个组件，参数为函数（props callback），函数的第一个参数为父组件传递的 props，第二给参数为父组件传递的 ref，其目的就是希望可以在封装组件时，外层组件可以通过 ref 直接控制内层组件或元素的行为。</p>
+
+<h4 id="不使用useImperativeHandle进行ref转发的例子"><a href="#不使用useImperativeHandle进行ref转发的例子" class="headerlink" title="不使用useImperativeHandle进行ref转发的例子"></a>不使用useImperativeHandle进行ref转发的例子</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useCallback, useRef &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> FancyButton = React.forwardRef(<span class="function">(<span class="params">props, pref</span>) =&gt;</span> (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;input ref=&#123;pref&#125; type=<span class="string">'text'</span> /&gt;</span><br><span class="line">    &lt;button&gt;&#123;props.children&#125;&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">))</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> ref = useRef()</span><br><span class="line">  <span class="keyword">const</span> handleClick = useCallback(<span class="function"><span class="params">()</span> =&gt;</span> ref.current.focus(),[ref])</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  useCallback的使用场景：</span></span><br><span class="line"><span class="comment">  有一个父组件，其中包含子组件，子组件接收一个函数作为props；通常而言，如果父组件更新了，子组件也会执行更新；但是大多数场景下，更新是没有必要的，我们可以借助useCallback来返回函数，然后把这个函数作为props传递给子组件；这样，子组件就能避免不必要的更新。</span></span><br><span class="line"><span class="comment">  useCallback 返回的是缓存的函数，当依赖的ref发生变化时，就会计算新的函数返回，这样就能减少不必要的渲染.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;FancyButton ref=&#123;ref&#125;&gt;Click Me&lt;<span class="regexp">/FancyButton&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;handleClick&#125;&gt;获取焦点&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个例子实际上是直接转发ref，直接转发 ref 是将 React.forwardRef 中函数上的 ref 参数直接应用在了返回元素的 ref 属性上，其实父、子组件引用的是同一个 ref 的 current 对象，官方并不推荐这样</p>
+
+<h4 id="使用useImperativeHandle进行ref转发"><a href="#使用useImperativeHandle进行ref转发" class="headerlink" title="使用useImperativeHandle进行ref转发"></a>使用useImperativeHandle进行ref转发</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useImperativeHandle, useRef &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> FancyInput = React.forwardRef(<span class="function">(<span class="params">props, pref</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> ref = useRef()</span><br><span class="line">  <span class="comment">// 第一个参数是目标元素的ref引用</span></span><br><span class="line">  useImperativeHandle(pref, ()=&gt; (&#123;</span><br><span class="line">    <span class="comment">// 暴露给父组件的方法</span></span><br><span class="line">    focus: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      ref.current.focus()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;))</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">      &lt;input ref=&#123;ref&#125; type=<span class="string">"text"</span>/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> fancyInputRef = useRef()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;FancyInput ref=&#123;fancyInputRef&#125; /&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; fancyInputRef.current.focus()&#125;&gt;</span><br><span class="line">        父组件调用子组件的 focus</span><br><span class="line">      &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 useImperativeHandle 后，可以让父、子组件分别有自己的 ref，通过 React.forwardRef 将父组件的 ref 透传过来，通过 useImperativeHandle 方法来自定义开放给父组件的 current。<b>useImperativeHandle必须和React.forwardRef配合使用</b></p>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/dfs/钥匙和房间/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:56:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/dfs/钥匙和房间/">钥匙和房间</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        			<a href="/categories/react//" class="article-tag-list-link color1">react</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/dfs/被围绕的区域/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:49:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/06/leetcode/数组/根据二进制1的数量排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">根据数字的二进制的1的数量排序原数组</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/dfs/被围绕的区域/">被围绕的区域</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/字符串/回文子串/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/字符串/回文子串/">回文子串</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/leetcode/字符串/字符串相乘/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:34:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/25/leetcode/字符串/字符串相乘/">字符串相乘</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/12/">12</a><a class="extend next" rel="next" href="/archives/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -362,8 +311,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

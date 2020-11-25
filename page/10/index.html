@@ -170,6 +170,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode/递归/搜索树转累加树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/22/leetcode/递归/搜索树转累加树/">搜索树转累加树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/22/leetcode/递归/搜索树转累加树/" class="archive-article-date">
+  	<time datetime="2020-09-22T07:34:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">给定一个二叉搜索树（Binary Search Tree），把它转换成为累加树（Greater Tree)，使得每个节点的值是原来的节点值加上所有大于它的节点值之和。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">例如：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输入: 原始二叉搜索树:</span></span><br><span class="line"><span class="comment">              5</span></span><br><span class="line"><span class="comment">            /   \</span></span><br><span class="line"><span class="comment">           2     13</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输出: 转换为累加树:</span></span><br><span class="line"><span class="comment">             18</span></span><br><span class="line"><span class="comment">            /   \</span></span><br><span class="line"><span class="comment">          20     13</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;TreeNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> convertBST = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 设置累加器，反序中序遍历二叉树</span></span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> convertRoot = <span class="function">(<span class="params">cur</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (cur) &#123;</span><br><span class="line">      convertRoot(cur.right)</span><br><span class="line">      sum += cur.val</span><br><span class="line">      cur.val = sum</span><br><span class="line">      convertRoot(cur.left)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  convertRoot(root)</span><br><span class="line">  <span class="keyword">return</span> root</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode//" class="article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/22/leetcode/递归/搜索树转累加树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode/递归/有序链表转二叉平衡搜索树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -360,83 +433,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/15/leetcode/递归/平衡二叉树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-webpack/webpack-start-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/22/webpack/webpack-start-1/">学习webpack</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/22/webpack/webpack-start-1/" class="archive-article-date">
-  	<time datetime="2019-09-22T14:36:17.811Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="初识webpack"><a href="#初识webpack" class="headerlink" title="初识webpack"></a>初识webpack</h4><p>WebPack可以看做是<strong>模块打包机</strong>：<br><strong>代码转换</strong>: TypeScript 编译成 JavaScript、SCSS,LESS 编译成 CSS.<br><strong>文件优化</strong>：压缩 JavaScript、CSS、HTML 代码，压缩合并图片。<br><strong>代码分割</strong>：提取多个页面的公共代码、提取首屏不需要执行部分的代码让其异步加载。<br><strong>模块合并</strong>：在采用模块化的项目里会有很多个模块和文件，需要构建功能把模块分类合并成一个文件。<br><strong>自动刷新</strong>：监听本地源代码的变化，自动重新构建、刷新浏览器。</p>
-<p>Webpack的工作方式是：<br>把你的项目当做一个整体，通过一个给定的主文件（如：index.js），<br>Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的<strong>JavaScript文件</strong>。</p>
-        
-          <a class="article-more-a" href="/2019/09/22/webpack/webpack-start-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/webpack//" class="article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/22/webpack/webpack-start-1/">展开全文 >></a>
         </p>
       
 
