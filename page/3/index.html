@@ -170,6 +170,238 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-others/flutter/start1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/13/others/flutter/start1/">flutter 入门踩坑</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/13/others/flutter/start1/" class="archive-article-date">
+  	<time datetime="2020-10-13T09:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="执行flutter-run报错"><a href="#执行flutter-run报错" class="headerlink" title="执行flutter run报错"></a>执行flutter run报错</h4><img src="/2020/10/13/others/flutter/start1/1.png">
+
+<p>这种情况可能是gradle压缩包版本的问题，更换下gradle的压缩包并更改调用路径</p>
+<p><b>解决方法:</b></p>
+        
+          <a class="article-more-a" href="/2020/10/13/others/flutter/start1/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">others</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/13/others/flutter/start1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-data-structure/环形链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/09/data-structure/环形链表/">环形链表</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/09/data-structure/环形链表/" class="archive-article-date">
+  	<time datetime="2020-10-09T03:10:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="给定一个链表，判断链表中是否有环"><a href="#给定一个链表，判断链表中是否有环" class="headerlink" title="给定一个链表，判断链表中是否有环"></a>给定一个链表，判断链表中是否有环</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * function ListNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.next = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;ListNode&#125; head</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置一个快指针，一个慢指针，有环的话快指针会追上慢指针，没有的话快指针会先到null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hasCycle = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!head || !head.next)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> slow = head</span><br><span class="line">    <span class="keyword">let</span> fast = head.next</span><br><span class="line">    <span class="keyword">while</span>(slow != fast) &#123;</span><br><span class="line">        <span class="keyword">if</span>(fast == <span class="literal">null</span> || fast.next == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        slow = slow.next</span><br><span class="line">        fast = fast.next.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/09/data-structure/环形链表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-data-structure/深度优先遍历二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/23/data-structure/深度优先遍历二叉树/">深度优先遍历二叉树Js实现</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/23/data-structure/深度优先遍历二叉树/" class="archive-article-date">
+  	<time datetime="2020-09-23T02:46:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="递归方式"><a href="#递归方式" class="headerlink" title="递归方式"></a>递归方式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">preorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(root.val)</span><br><span class="line">        preorderTree(root.left)</span><br><span class="line">        preorderTree(root.right)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">preorderTree(root)</span><br><span class="line"></span><br><span class="line"><span class="comment">//中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!==<span class="literal">null</span>)&#123;</span><br><span class="line">        inorderTree(root.left)</span><br><span class="line">        <span class="built_in">console</span>.log(root.val)</span><br><span class="line">        inorderTree(root.right)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">inorderTree(root)</span><br><span class="line"></span><br><span class="line"><span class="comment">//后序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">postorderTree</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!==<span class="literal">null</span>)&#123;</span><br><span class="line">        postorderTree(root.left)</span><br><span class="line">        postorderTree(root.right)</span><br><span class="line">        <span class="built_in">console</span>.log(root.val)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">postorderTree(root)</span><br></pre></td></tr></table></figure>
+
+<h4 id="迭代方式"><a href="#迭代方式" class="headerlink" title="迭代方式"></a>迭代方式</h4>
+        
+          <a class="article-more-a" href="/2020/09/23/data-structure/深度优先遍历二叉树/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/23/data-structure/深度优先遍历二叉树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode/递归/填充树节点的下一个右侧节点指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -251,255 +483,6 @@
 
 
   
-    <article id="post-js/methods/bubbles" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/js/methods/bubbles/">绘制气泡</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/20/js/methods/bubbles/" class="archive-article-date">
-  	<time datetime="2019-09-20T03:52:12.619Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="使用canvas绘制气泡效果"><a href="#使用canvas绘制气泡效果" class="headerlink" title="使用canvas绘制气泡效果"></a>使用canvas绘制气泡效果</h4><p>完整代码：</p>
-        
-          <a class="article-more-a" href="/2019/09/20/js/methods/bubbles/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/20/js/methods/bubbles/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-es6/深浅复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/es6/深浅复制/">实现深复制，浅复制</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/26/es6/深浅复制/" class="archive-article-date">
-  	<time datetime="2020-09-26T07:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="深复制"><a href="#深复制" class="headerlink" title="深复制"></a>深复制</h4><p>JSON方法实现</p>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> deepCopy=<span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> tmp=<span class="built_in">JSON</span>.stringify(obj)</span><br><span class="line">	<span class="keyword">let</span> res=<span class="built_in">JSON</span>.parse(tmp)</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>for循环实现</p>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">      <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span>) &#123;</span><br><span class="line">          result[key] = deepCopy(obj[key])  <span class="comment">//递归复制</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          result[key] = obj[key]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="浅复制"><a href="#浅复制" class="headerlink" title="浅复制"></a>浅复制</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> target = []</span><br><span class="line"><span class="keyword">let</span> testArr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="built_in">Object</span>.assign(target, testArr)</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/es6//" class="article-tag-list-link color4">es6</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/26/es6/深浅复制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css/css-margin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/css/css-margin/">CSS margin</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/26/css/css-margin/" class="archive-article-date">
-  	<time datetime="2020-09-26T07:16:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="百分比margin"><a href="#百分比margin" class="headerlink" title="百分比margin"></a>百分比margin</h4><p>普通元素百分比margin都是相对于容器宽度计算的</p>
-
-<p>绝对定位元素的百分比margin是相对第一个定位祖先元素（relative、absolute，fixed）的宽度计算的</p>
-
-<h4 id="margin重叠"><a href="#margin重叠" class="headerlink" title="margin重叠"></a>margin重叠</h4><p>margin重叠的3种情境</p>
-
-<ol>
-<li>相邻的兄弟元素</li>
-<li>父级和第一个/最后一个子元素</li>
-<li>空的block元素</li>
-</ol>
-<p>margin重叠通常特性</p>
-
-<ol>
-<li>block水平元素，不包括float和absolute元素</li>
-<li>不考虑writing-mode，只发生在垂直方向margin-top，margin-bottom</li>
-</ol>
-        
-          <a class="article-more-a" href="/2020/09/26/css/css-margin/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/26/css/css-margin/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -514,7 +497,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Liu Yunxiang
+    		&copy; 2021 Liu Yunxiang
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
