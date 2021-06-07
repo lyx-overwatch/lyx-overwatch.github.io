@@ -192,8 +192,7 @@
       
         <h3 id="文字跑马灯的实现原理"><a href="#文字跑马灯的实现原理" class="headerlink" title="文字跑马灯的实现原理"></a>文字跑马灯的实现原理</h3><p>前提条件，假设文字很长很长；文字的容器A，A的父容器B，B的长度小于A的长度，给B容器设置overflow: hidden，强制不换行属性white-space: nowrap;</p>
 
-<p>实现思路就是将A容器从左向右滚动，滚动的距离就是A的长度 - B的长度
-(如果是移动端，<b>1px的css像素(独立像素)并不等于1px的屏幕物理像素</b>；项目使用rem布局，200px宽度的设计稿长度在屏幕上css只有100px宽度，可以理解为<b>1px的css独立像素等于2px的屏幕物理像素</b>；所以在设置css3动画的时候，项目中的滚动距离就是<b>(A的长度 - B的长度) / 2</b>了)，下面是js动画和css3动画两种实现方法的具体代码</p>
+<p>实现思路就是将A容器从左向右滚动，滚动的距离就是A的长度 - B的长度,下面是js动画和css3动画两种实现方法的具体代码</p>
 
 <h3 id="使用window-requestAnimationFrame动画"><a href="#使用window-requestAnimationFrame动画" class="headerlink" title="使用window.requestAnimationFrame动画"></a>使用window.requestAnimationFrame动画</h3>
         
